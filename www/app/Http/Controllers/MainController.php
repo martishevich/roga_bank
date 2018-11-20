@@ -10,4 +10,7 @@ class MainController extends Controller
 
         return view('index');
     }
+    public function login(){
+        return view('main.login');
+    }
 }

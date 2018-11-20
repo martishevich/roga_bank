@@ -75,6 +75,7 @@
       <path value="$PROJECT_DIR$/www/vendor/paragonie/random_compat" />
       <path value="$PROJECT_DIR$/www/vendor/composer" />
       <path value="$PROJECT_DIR$/www/vendor/fideloper/proxy" />
+      <path value="$PROJECT_DIR$/www/vendor/laravelcollective/html" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

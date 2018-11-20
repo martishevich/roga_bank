@@ -14,6 +14,7 @@ use App\Task;
 */
 
 Route::get('/', 'MainController@index');
+Route::get('/login', 'MainController@login');
 Route::get('/tasks/{task}', 'TasksController@show');
 
 /*Route::get('tasks', function () {
