@@ -14,14 +14,12 @@ use App\Task;
 */
 
 Route::get('/', 'MainController@index');
-Route::get('/tasks/{task}', 'TasksController@show');
 
-/*Route::get('tasks', function () {
-    $tasks =Task::incomplete();
-    return view('tasks.app',compact('tasks'));
+Route::get('/about', function () {
+	return view('main/about');
 });
 
-Route::get('tasks/{task}', function ($id) {
-    $task = Task::find($id);
-    return view('tasks.show',compact('task'));
-});*/
+Route::get('/login', function () {
+	return view('main/login');
+});
+
