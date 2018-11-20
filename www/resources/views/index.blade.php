@@ -1,10 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Laravel</title>
-</head>
-<body>
+@extends('layoute')
+
+@section('content')
     <h1>Главная страница</h1>
-</body>
-</html>
+@endsection
+
+
