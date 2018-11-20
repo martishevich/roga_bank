@@ -10,7 +10,6 @@
 
     <title>Template for Bank system</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
     <!-- Custom styles for this template -->
     <link href="css/cover.css" rel="stylesheet">
   </head>
@@ -35,7 +34,7 @@
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Bank template by <strong>Roga</strong></p>
+          <p>Bank template by <strong>Roga team</strong></p>
         </div>
       </footer>
     </div>
