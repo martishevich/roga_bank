@@ -13,7 +13,7 @@ use App\Task;
 |
 */
 
-Route::get('/tasks', 'TasksController@index');
+Route::get('/', 'MainController@index');
 Route::get('/tasks/{task}', 'TasksController@show');
 
 /*Route::get('tasks', function () {
