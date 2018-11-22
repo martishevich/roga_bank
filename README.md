@@ -9,7 +9,7 @@ docker-compose up
 docker-compose up -d
 
 #### login into php container
-docker exec -it test-php /bin/bash
+docker exec -it roga-test /bin/bash
 
 #### add color alias - ll
 alias ll='ls -la --color=tty'
