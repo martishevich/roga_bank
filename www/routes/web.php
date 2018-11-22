@@ -19,7 +19,13 @@ Route::get('/about', function () {
 	return view('main/about');
 });
 
-Route::get('/login', function () {
-	return view('main/login');
-});
+Route::get('/login', 'UserController@login');
+Route::post('/login', 'UserController@login');
+Route::get('/userPage', 'UserController@userPage');
+
+Route::get('/loginAdmin', 'AdminController@loginAdmin');
+Route::post('/loginAdmin', 'AdminController@loginAdmin');
+Route::get('/adminPage', 'AdminController@adminPage');
+
+
 
