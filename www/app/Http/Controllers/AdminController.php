@@ -19,27 +19,31 @@ class AdminController extends Controller
         if ($request->isMethod('post')) {
             $rules = [
                 'login' => 'required|max:30',
-                'password' => 'required'
+                'password' => 'required|exists:admins'
             ];
 
             $this->validate($request, $rules);
             $loginOk = Admin::where('login', '=', $_POST['login'])->first();
             $request->session()->put('id', $loginOk->id);
-            //$hashedPassword = Hash::make( $_POST['password']);
-            $hashedpassword = md5($_POST['password']);
-            dump($hashedpassword);
-            if ($_POST['login'] == $loginOk->login && $hashedpassword == $loginOk->password) {
+            if ($_POST['login'] == $loginOk->login && $_POST['password'] == $loginOk->password) {
                 return redirect()->action('AdminController@adminPage');
             }
 
         }
+        dump($request);
         return view('admin.loginAdmin');
     }
 
     public function adminPage(Request $request)
     {
+        dump($request);
         $value = $request->session()->all();
         $loginOk = Admin::find($value['id']);
+        if(isset($_POST['submit']))
+        {
+            $request->session()->forget('id');
+            return redirect()->action('AdminController@loginAdmin');
+        }
         return view('admin.adminPage', compact('loginOk', 'value'));
     }
 
