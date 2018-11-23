@@ -1,6 +1,7 @@
-@extends('layout')
+{{--@extends('layout')
 
-@section('content')
+@section('content')--}}
     Админ <?php  echo $loginOk->login;?> вы успешно авторизировались
+{{--
 @endsection
-<?php  echo $loginOk->login;?>
+<?php  echo $loginOk->login;?>--}}

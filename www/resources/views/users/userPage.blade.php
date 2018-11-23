@@ -1,6 +1,6 @@
-@extends('layout')
+{{--@extends('layout')
 
-@section('content')
-    вы успешно авторизировались
-@endsection
+@section('content')--}}
+ вы успешно авторизировались
+{{--@endsection--}}
 <?php  echo $loginOk->login;?>

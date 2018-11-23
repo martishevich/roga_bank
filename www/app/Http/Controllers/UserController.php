@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Login;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -22,13 +23,11 @@ class UserController extends Controller
                 'login' =>'required|max:10',
                 'password' =>'required'
             ];
-
             $this->validate($request,$rules);
             $loginOk = Login::where('login','=',$_POST['login'] )->first();
             $request->session()->put('id', $loginOk->id);
-            $hashedPassword = Hash::make( $_POST['password']);
             $hashedpassword = md5($_POST['password']);
-            dump($hashedpassword);
+            $_POST['password']=$hashedpassword;
             if($_POST['login']==$loginOk->login && $hashedpassword == $loginOk->password){
 
                 return redirect()->action('UserController@userPage');
@@ -41,8 +40,8 @@ class UserController extends Controller
 
     public function userPage(Request $request)
     {
-        $value = $request->session()->all();
-        $loginOk = Login::find($value['id']);
+        $value = $request->session();
+        $loginOk = Login::find(session('id'));
         return view('users.userPage',compact('loginOk','value'));
     }
 

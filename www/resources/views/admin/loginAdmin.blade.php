@@ -1,6 +1,6 @@
-@extends('layout')
+{{--@extends('layout')
 
-@section('content')
+@section('content')--}}
     {!!  Form::open(array('action' => 'AdminController@loginAdmin')) !!}
     {!! Form::label('login', 'Login'); !!}
     {!!  Form::text('login')!!}
@@ -17,4 +17,5 @@
             </ul>
         </div>
     @endif
-@endsection
+{{--
+@endsection--}}
