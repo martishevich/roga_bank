@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Login;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -20,29 +21,35 @@ class UserController extends Controller
         {
             $rules=[
                 'login' =>'required|max:10',
-                'password' =>'required'
+                'password' =>'required|exists:logins'
             ];
-
             $this->validate($request,$rules);
             $loginOk = Login::where('login','=',$_POST['login'] )->first();
             $request->session()->put('id', $loginOk->id);
-            $hashedPassword = Hash::make( $_POST['password']);
-            $hashedpassword = md5($_POST['password']);
-            dump($hashedpassword);
-            if($_POST['login']==$loginOk->login && $hashedpassword == $loginOk->password){
+
+            //$hashedpassword = md5($_POST['password']);
+
+            if($_POST['login']==$loginOk->login && $_POST['password'] == $loginOk->password){
 
                 return redirect()->action('UserController@userPage');
             }
 
         }
-
+        dump($request);
         return view('users.login');
     }
 
     public function userPage(Request $request)
     {
-        $value = $request->session()->all();
-        $loginOk = Login::find($value['id']);
+        dump($request);
+        $value = $request->session();
+        $loginOk = Login::find(session('id'));
+        if(isset($_POST['exit']))
+        {
+            $request->session()->forget('id');
+            return redirect()->action('UserController@login');
+        }
+
         return view('users.userPage',compact('loginOk','value'));
     }
 

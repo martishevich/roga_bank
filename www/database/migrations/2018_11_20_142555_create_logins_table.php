@@ -15,11 +15,11 @@ class CreateLoginsTable extends Migration
     {
         Schema::create('logins', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('users');
+            $table->text('login');
             $table->text('password');
-            $table->text('firstName');
             $table->text('lastName');
-            $table->integer('user_id');
+            $table->text('firstName');
+            $table->text('middleName');
             $table->date('birthday');
             $table->timestamps();
         });
