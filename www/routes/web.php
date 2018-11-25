@@ -19,15 +19,15 @@ Route::get('/about', function () {
 	return view('main/about');
 });
 
-Route::get('/login', 'UserController@login');
-Route::post('/login', 'UserController@login');
-Route::get('/userPage', 'UserController@userPage');
-Route::post('/userPage', 'UserController@userPage');
+//Route::get('/login', 'UserController@login');
+Route::match(['get', 'post'],'/login', 'UserController@login');
+Route::match(['get', 'post'],'/userPage', 'UserController@userPage')->middleware(['authorith']);
+//Route::post('/userPage', 'UserController@userPage');
 
-Route::get('/loginAdmin', 'AdminController@loginAdmin');
-Route::post('/loginAdmin', 'AdminController@loginAdmin');
-Route::get('/adminPage', 'AdminController@adminPage');
-Route::post('/adminPage', 'AdminController@adminPage');
+Route::match(['get', 'post'],'/loginAdmin', 'AdminController@loginAdmin');
+//Route::post('/loginAdmin', 'AdminController@loginAdmin');
+Route::match(['get', 'post'],'/adminPage', 'AdminController@adminPage')->middleware(['adminauthorith']);
+//Route::post('/adminPage', 'AdminController@adminPage');
 
 
 
