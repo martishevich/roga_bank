@@ -7,6 +7,7 @@
  */
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Admin;
 use Illuminate\Support\Facades\Hash;
@@ -24,24 +25,23 @@ class AdminController extends Controller
 
             $this->validate($request, $rules);
             $loginOk = Admin::where('login', '=', $_POST['login'])->first();
-            $request->session()->put('id', $loginOk->id);
+            $request->session()->put('idAdmin', $loginOk->id);
             if ($_POST['login'] == $loginOk->login && $_POST['password'] == $loginOk->password) {
                 return redirect()->action('AdminController@adminPage');
             }
 
         }
-        dump($request);
+
         return view('admin.loginAdmin');
     }
 
     public function adminPage(Request $request)
     {
-        dump($request);
+
         $value = $request->session()->all();
-        $loginOk = Admin::find($value['id']);
-        if(isset($_POST['submit']))
-        {
-            $request->session()->forget('id');
+        $loginOk = Admin::find($value['idAdmin']);
+        if (isset($_POST['submit'])) {
+            $request->session()->forget('idAdmin');
             return redirect()->action('AdminController@loginAdmin');
         }
         return view('admin.adminPage', compact('loginOk', 'value'));
