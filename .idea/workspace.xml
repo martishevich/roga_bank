@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf977cec-5da4-491a-aaa6-e8d1a70d4165" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/mariadb/roga_bank/logins.frm" afterPath="$PROJECT_DIR$/mariadb/roga_bank/logins.frm" />
-      <change beforePath="$PROJECT_DIR$/mariadb/roga_bank/logins.ibd" afterPath="$PROJECT_DIR$/mariadb/roga_bank/logins.ibd" />
-      <change beforePath="$PROJECT_DIR$/mariadb/roga_bank/migrations.frm" afterPath="$PROJECT_DIR$/mariadb/roga_bank/migrations.frm" />
-      <change beforePath="$PROJECT_DIR$/mariadb/roga_bank/migrations.ibd" afterPath="$PROJECT_DIR$/mariadb/roga_bank/migrations.ibd" />
-      <change beforePath="$PROJECT_DIR$/mariadb/roga_bank/password_resets.frm" afterPath="$PROJECT_DIR$/mariadb/roga_bank/password_resets.frm" />
-      <change beforePath="$PROJECT_DIR$/mariadb/roga_bank/password_resets.ibd" afterPath="$PROJECT_DIR$/mariadb/roga_bank/password_resets.ibd" />
-      <change beforePath="$PROJECT_DIR$/mariadb/roga_bank/sessions.frm" afterPath="$PROJECT_DIR$/mariadb/roga_bank/sessions.frm" />
-      <change beforePath="$PROJECT_DIR$/mariadb/roga_bank/sessions.ibd" afterPath="$PROJECT_DIR$/mariadb/roga_bank/sessions.ibd" />
-      <change beforePath="$PROJECT_DIR$/mariadb/roga_bank/users.frm" afterPath="$PROJECT_DIR$/mariadb/roga_bank/users.frm" />
-      <change beforePath="$PROJECT_DIR$/mariadb/roga_bank/users.ibd" afterPath="$PROJECT_DIR$/mariadb/roga_bank/users.ibd" />
-      <change beforePath="$PROJECT_DIR$/www/app/Http/Controllers/AdminController.php" afterPath="$PROJECT_DIR$/www/app/Http/Controllers/AdminController.php" />
-      <change beforePath="$PROJECT_DIR$/www/app/Http/Controllers/UserController.php" afterPath="$PROJECT_DIR$/www/app/Http/Controllers/UserController.php" />
-      <change beforePath="$PROJECT_DIR$/www/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/www/app/Http/Kernel.php" />
-      <change beforePath="$PROJECT_DIR$/www/resources/views/users/userPage.blade.php" afterPath="$PROJECT_DIR$/www/resources/views/users/userPage.blade.php" />
-      <change beforePath="$PROJECT_DIR$/www/routes/web.php" afterPath="$PROJECT_DIR$/www/routes/web.php" />
-    </list>
+    <list default="true" id="bf977cec-5da4-491a-aaa6-e8d1a70d4165" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/app/Http/Controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="36" column="9" lean-forward="false" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+            <state relative-caret-position="470">
+              <caret line="47" column="46" lean-forward="true" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -115,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/www/app/Http/Controllers/AdminController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
                 <element signature="e#135#163#0#PHP" expanded="true" />
               </folding>
@@ -123,7 +106,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Athorithmiddleware.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Athorithmiddleware.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/app/Http/Middleware/Athorithmiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
@@ -133,11 +116,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/app/Http/Controllers/MainController.php">
+      <file leaf-file-name="AddUserHelper.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/app/Components/AddUserHelper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="90">
+              <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/config/app.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1338">
+              <caret line="225" column="52" lean-forward="false" selection-start-line="225" selection-start-column="52" selection-end-line="225" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="session.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/config/session.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -172,6 +175,7 @@
         <option value="$PROJECT_DIR$/www/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/www/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/www/app/Http/Middleware/Athorithmiddleware.php" />
+        <option value="$PROJECT_DIR$/www/app/Components/AddUserHelper.php" />
       </list>
     </option>
   </component>
@@ -337,16 +341,7 @@
               <item name="roga_bank" type="b2602c69:ProjectViewProjectNode" />
               <item name="roga_bank" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="roga_bank" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roga_bank" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Middleware" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="roga_bank" type="b2602c69:ProjectViewProjectNode" />
@@ -404,7 +399,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -449,7 +444,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33381000" />
+    <option name="totallyTimeSpent" value="38039000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="710" extended-state="6" />
@@ -497,20 +492,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/app/Http/Controllers/MainController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/resources/views/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -603,13 +584,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/resources/views/layoute.blade.php" />
-    <entry file="file://$PROJECT_DIR$/www/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="225" column="52" lean-forward="false" selection-start-line="225" selection-start-column="52" selection-end-line="225" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -843,10 +817,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/Http/Controllers/UserController.php">
+    <entry file="file://$PROJECT_DIR$/www/app/Http/Middleware/Athorithmiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="36" column="9" lean-forward="false" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+        <state relative-caret-position="285">
+          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/config/session.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/Components/AddUserHelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1338">
+          <caret line="225" column="52" lean-forward="false" selection-start-line="225" selection-start-column="52" selection-end-line="225" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -854,17 +852,17 @@
     <entry file="file://$PROJECT_DIR$/www/app/Http/Controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <element signature="e#135#163#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/Http/Middleware/Athorithmiddleware.php">
+    <entry file="file://$PROJECT_DIR$/www/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+        <state relative-caret-position="470">
+          <caret line="47" column="46" lean-forward="true" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
           <folding />
         </state>
       </provider>
