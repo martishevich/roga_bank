@@ -1,13 +1,13 @@
 {{--@extends('layout')
 
 @section('content')--}}
-    {!!  Form::open(array('action' => 'UserController@login')) !!}
+    {!! Form::open(array('action' => 'UserController@login')) !!}
     {!! Form::label('login', 'Login'); !!}
-    {!!  Form::text('login')!!}
+    {!! Form::text('login')!!}
     {!! Form::label('password', 'Password'); !!}
-    {!!  Form::password('password')!!}
+    {!! Form::password('password')!!}
     {!! Form::submit('Нажми меня!')  !!}
-    {!!  Form::close() !!}
+    {!! Form::close() !!}
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
