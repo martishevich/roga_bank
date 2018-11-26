@@ -8,8 +8,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Phone_user;
+use App\Mail_user;
 use Illuminate\Http\Request;
 use App\Admin;
+use App\Login;
+
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -31,6 +35,9 @@ class AdminController extends Controller
             }
 
         }
+        $user = Phone_user::find(1);
+        $mail = Mail_user::updateDataMail(2,'irina@gmail.com', 1,1);
+        dump($mail);
 
         return view('admin.loginAdmin');
     }
