@@ -1,10 +1,3 @@
-# COMMANDS:
-#### delete ALL docker containers
-docker system prune -a 
-
-#### start composer
-docker-compose up
-
 ####  start composer as demon
 docker-compose up -d
 
