@@ -35,9 +35,8 @@ class AdminController extends Controller
             }
 
         }
-        $user = Phone_user::find(1);
-        $mail = Mail_user::updateDataMail(2,'irina@gmail.com', 1,1);
-        dump($mail);
+
+        dump($request->session());
 
         return view('admin.loginAdmin');
     }
@@ -51,7 +50,23 @@ class AdminController extends Controller
             $request->session()->forget('idAdmin');
             return redirect()->action('AdminController@loginAdmin');
         }
+
+        if (isset($_POST['create'])) {
+            return redirect()->action('AdminController@createUser');
+        }
         return view('admin.adminPage', compact('loginOk', 'value'));
+    }
+
+    public function createUser(Request $request)
+    {
+        if ($request->isMethod('post')){
+            Login::addUser($_POST['login'],$_POST['password'],$_POST['lastName'] ,$_POST['firstName'],$_POST['middleName'],$_POST['numberPassport'],$_POST['identificationNumber'],$_POST['birthday']);
+            $numberpassport = Login::where('numberPassport', '=', $_POST['numberPassport'])->first();
+            dump($numberpassport);
+            Phone_user::addPhone($_POST['phone'],0 ,$numberpassport->id);
+            Mail_user::addMail($_POST['mail'],0 ,$numberpassport->id);
+        }
+        return view('admin.createUser' );
     }
 
 }

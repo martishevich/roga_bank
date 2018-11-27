@@ -11,7 +11,7 @@ class Phone_user extends Model
         return $this->belongsTo('App\Login');
     }
 
-    public static function addPhone($phone_number, $main_phone, $user_id)
+    public static function addPhone($phone_number, $main_phone  , $user_id)
     {
         $phone = new Phone_user;
         $phone->phone_number = $phone_number;
