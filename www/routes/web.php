@@ -27,7 +27,7 @@ Route::match(['get', 'post'],'/userPage', 'UserController@userPage')->middleware
 Route::match(['get', 'post'],'/loginAdmin', 'AdminController@loginAdmin');
 //Route::post('/loginAdmin', 'AdminController@loginAdmin');
 Route::match(['get', 'post'],'/adminPage', 'AdminController@adminPage')->middleware(['adminauthorith']);
-Route::match(['get', 'post'],'/crateUser', 'AdminController@createUser')->middleware(['adminauthorith']);
+Route::match(['get', 'post'],'/createUser', 'AdminController@createUser')->middleware(['adminauthorith']);
 //Route::post('/adminPage', 'AdminController@adminPage');
 
 
