@@ -20,6 +20,8 @@ class CreateLoginsTable extends Migration
             $table->text('lastName');
             $table->text('firstName');
             $table->text('middleName');
+            $table->text('numberPassport');
+            $table->text('identificationNumber');
             $table->date('birthday');
             $table->timestamps();
         });
