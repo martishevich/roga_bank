@@ -16,7 +16,10 @@ class Login extends Model
     {
         return $this->hasMany('App\Mail_user','user_id');
     }
-
+    public function account_card()
+    {
+        return $this->hasMany('App\Account_card','user_id');
+    }
     public static function addUser($login, $password, $lastName, $firstName, $middleName, $numberPassport, $identificationNumber, $birthday)
     {
         $dataUser = new Login;

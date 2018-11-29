@@ -14,9 +14,10 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Login;
-
+use App\Account_card;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Components\HelpAccountCard;
 
 class AdminController extends Controller
 {
@@ -37,9 +38,6 @@ class AdminController extends Controller
             }
 
         }
-
-        dump($request->session());
-
         return view('admin.loginAdmin');
     }
 
@@ -72,7 +70,8 @@ class AdminController extends Controller
 
 
         }
-
+        $generate_card = HelpAccountCard::generationAccountCard();
+        dump($generate_card);
         return view('admin.adminPage', compact('loginOk', 'value', 'search'));
     }
 
@@ -100,6 +99,9 @@ class AdminController extends Controller
             dump($numberpassport);
             Phone_user::addPhone($_POST['phone'],1 ,$numberpassport->id);
             Mail_user::addMail($_POST['mail'],1 ,$numberpassport->id);
+            $generate_card = HelpAccountCard::generationAccountCard();
+            Account_card::addAccountCard($generate_card['card_namber'] , $generate_card['cvv'],$_POST['firstName'], $_POST['lastName'], $generate_card['valid_thru'],'USD', $numberpassport->id);
+
         }
 
         return view('admin.createUser');
