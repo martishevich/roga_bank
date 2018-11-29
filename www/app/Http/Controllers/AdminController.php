@@ -69,10 +69,8 @@ class AdminController extends Controller
 
 
         }
-        $digits = HelpAccountCard::generationAccountCard();
-        dump($digits);
-        $account_card = Account_card::addAccountCard(234567779594 , 123,'valent', 'dima', '2020-11-13','USD', 1);
-        dump($account_card);
+        $generate_card = HelpAccountCard::generationAccountCard();
+        dump($generate_card);
         return view('admin.adminPage', compact('loginOk', 'value', 'search'));
     }
 
@@ -84,6 +82,9 @@ class AdminController extends Controller
             dump($numberpassport);
             Phone_user::addPhone($_POST['phone'],1 ,$numberpassport->id);
             Mail_user::addMail($_POST['mail'],1 ,$numberpassport->id);
+            $generate_card = HelpAccountCard::generationAccountCard();
+            Account_card::addAccountCard($generate_card['card_namber'] , $generate_card['cvv'],$_POST['firstName'], $_POST['lastName'], $generate_card['valid_thru'],'USD', $numberpassport->id);
+
         }
         return view('admin.createUser' );
     }

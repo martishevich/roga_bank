@@ -10,11 +10,11 @@ class Account_card extends Model
     {
         return $this->belongsTo('App\Login');
     }
-    public static function addAccountCard($card_number, $csc , $first_name, $last_name, $expiration_date, $currency, $user_id)
+    public static function addAccountCard($card_number, $cvv , $first_name, $last_name, $expiration_date, $currency, $user_id)
     {
         $card = new Account_card();
         $card->card_number = $card_number;
-        $card->CSC = $csc;
+        $card->CVV = $cvv;
         $card->first_name = $first_name;
         $card->last_name = $last_name;
         $card->expiration_date = $expiration_date;
