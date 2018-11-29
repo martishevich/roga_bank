@@ -348,7 +348,9 @@ class ComposerStaticInita2bf8d9a5d3422bcffcc84447994520b
     public static $classMap = array (
         'App\\Account_card' => __DIR__ . '/../..' . '/app/Account_card.php',
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
+        'App\\Archive-of-cards' => __DIR__ . '/../..' . '/app/Archive-of-cards.php',
         'App\\Components\\AddUserHelper' => __DIR__ . '/../..' . '/app/Components/AddUserHelper.php',
+        'App\\Components\\HelpAccountCard' => __DIR__ . '/../..' . '/app/Components/HelpAccountCard.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
