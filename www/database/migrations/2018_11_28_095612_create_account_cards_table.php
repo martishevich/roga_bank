@@ -20,6 +20,7 @@ class CreateAccountCardsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->date('expiration_date');
+            $table->string('currency');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('logins');
             $table->timestamps();

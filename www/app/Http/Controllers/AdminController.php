@@ -13,9 +13,10 @@ use App\Mail_user;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Login;
-
+use App\Account_card;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Components\HelpAccountCard;
 
 class AdminController extends Controller
 {
@@ -36,9 +37,6 @@ class AdminController extends Controller
             }
 
         }
-
-        dump($request->session());
-
         return view('admin.loginAdmin');
     }
 
@@ -71,7 +69,10 @@ class AdminController extends Controller
 
 
         }
-
+        $digits = HelpAccountCard::generationAccountCard();
+        dump($digits);
+        $account_card = Account_card::addAccountCard(234567779594 , 123,'valent', 'dima', '2020-11-13','USD', 1);
+        dump($account_card);
         return view('admin.adminPage', compact('loginOk', 'value', 'search'));
     }
 
