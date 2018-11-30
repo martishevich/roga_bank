@@ -18,6 +18,7 @@ use App\Account_card;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Components\HelpAccountCard;
+use App\Currency;
 
 class AdminController extends Controller
 {
@@ -38,6 +39,7 @@ class AdminController extends Controller
             }
 
         }
+
         return view('admin.loginAdmin');
     }
 
@@ -70,14 +72,27 @@ class AdminController extends Controller
 
 
         }
-        $generate_card = HelpAccountCard::generationAccountCard();
-        dump($generate_card);
+
+        $action = true;
+        while ($action == true){
+            $generate_card = HelpAccountCard::generationAccountCard();
+            $card = Account_card::where('card_number', '=', $generate_card['card_number'])->first();
+            if($card != null){
+                dump('sdfasdfasdf');
+                $generate_card = HelpAccountCard::generationAccountCard();
+                $action =false;
+            }
+            $action =false;
+        }
+
+
         return view('admin.adminPage', compact('loginOk', 'value', 'search'));
     }
 
 
     public function createUser(Request $request)
     {
+
         if ($request->isMethod('post')){
 
            $validatedData = $request->validate([
@@ -94,14 +109,13 @@ class AdminController extends Controller
           ]);
 
 
-            Login::addUser($_POST['login'],$_POST['password'],$_POST['lastName'] ,$_POST['firstName'],$_POST['middleName'],$_POST['numberPassport'],$_POST['identificationNumber'],$_POST['birthday']);
-            $numberpassport = Login::where('numberPassport', '=', $_POST['numberPassport'])->first();
-            dump($numberpassport);
-            Phone_user::addPhone($_POST['phone'],1 ,$numberpassport->id);
-            Mail_user::addMail($_POST['mail'],1 ,$numberpassport->id);
-            $generate_card = HelpAccountCard::generationAccountCard();
-            Account_card::addAccountCard($generate_card['card_namber'] , $generate_card['cvv'],$_POST['firstName'], $_POST['lastName'], $generate_card['valid_thru'],'USD', $numberpassport->id);
 
+            Login::addUser($_POST['login'],$_POST['password'],$_POST['lastName'] ,$_POST['firstName'],$_POST['middleName'],$_POST['numberPassport'],$_POST['identificationNumber'],$_POST['birthday']);
+            $user = Login::where('numberPassport', '=', $_POST['numberPassport'])->first();
+            Phone_user::addPhone($_POST['phone'],1 ,$user->id);
+            Mail_user::addMail($_POST['mail'],1 ,$user->id);
+            Account_card::addAccountCard($_POST['firstName'], $_POST['lastName'],$_POST['currency'], $user->id);
+            return redirect()->action('AdminController@adminPage');
         }
 
         return view('admin.createUser');

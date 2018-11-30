@@ -20,6 +20,8 @@
 {!! Form::label('mail', 'Email'); !!}<br>
 {!! Form::text('mail')!!}<br>
 {!! Form::label('birthday', 'Birthday'); !!}<br>
-{!! Form::date('birthday')!!}<br><br>
+{!! Form::date('birthday')!!}<br>
+{!! Form::label('cardСurrency', 'Сard Currency'); !!}<br>
+{!! Form::select('currency', array('USD' => 'USD', 'EUR' => 'EUR', 'GBP' => 'GBP', 'BYN' => 'BYN'), 'BYN')!!}<br><br>
 {!! Form::submit('Админ Нажми меня!')  !!}
 {!! Form::close() !!}

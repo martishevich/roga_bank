@@ -15,8 +15,8 @@ class CreateAccountCardsTable extends Migration
     {
         Schema::create('account_cards', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('card_number');
-            $table->tinyInteger('CVV');
+            $table->string('card_number');
+            $table->string('CVV');
             $table->string('first_name');
             $table->string('last_name');
             $table->date('expiration_date');

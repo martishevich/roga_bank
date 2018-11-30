@@ -8,8 +8,11 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Account_card' => $baseDir . '/app/Account_card.php',
     'App\\Admin' => $baseDir . '/app/Admin.php',
+    'App\\Archive-of-cards' => $baseDir . '/app/Archive-of-cards.php',
     'App\\Components\\AddUserHelper' => $baseDir . '/app/Components/AddUserHelper.php',
+    'App\\Components\\HelpAccountCard' => $baseDir . '/app/Components/HelpAccountCard.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Currency' => $baseDir . '/app/Currency.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
