@@ -18,6 +18,7 @@ use App\Account_card;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Components\HelpAccountCard;
+use App\Currency;
 
 class AdminController extends Controller
 {
@@ -71,7 +72,20 @@ class AdminController extends Controller
 
 
         }
-        
+
+        $action = true;
+        while ($action == true){
+            $generate_card = HelpAccountCard::generationAccountCard();
+            $card = Account_card::where('card_number', '=', $generate_card['card_number'])->first();
+            if($card != null){
+                dump('sdfasdfasdf');
+                $generate_card = HelpAccountCard::generationAccountCard();
+                $action =false;
+            }
+            $action =false;
+        }
+
+
         return view('admin.adminPage', compact('loginOk', 'value', 'search'));
     }
 
@@ -95,11 +109,12 @@ class AdminController extends Controller
           ]);
 
 
+
             Login::addUser($_POST['login'],$_POST['password'],$_POST['lastName'] ,$_POST['firstName'],$_POST['middleName'],$_POST['numberPassport'],$_POST['identificationNumber'],$_POST['birthday']);
             $user = Login::where('numberPassport', '=', $_POST['numberPassport'])->first();
             Phone_user::addPhone($_POST['phone'],1 ,$user->id);
             Mail_user::addMail($_POST['mail'],1 ,$user->id);
-            Account_card::addAccountCard($_POST['firstName'], $_POST['lastName'],'USD', $user->id);
+            Account_card::addAccountCard($_POST['firstName'], $_POST['lastName'],$_POST['currency'], $user->id);
             return redirect()->action('AdminController@adminPage');
         }
 

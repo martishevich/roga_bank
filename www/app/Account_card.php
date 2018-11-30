@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Components\HelpAccountCard;
+use App\Currency;
 class Account_card extends Model
 {
 
@@ -13,7 +14,19 @@ class Account_card extends Model
     }
     public static function addAccountCard( $first_name, $last_name, $currency, $user_id)
     {
-        $generate_card = HelpAccountCard::generationAccountCard();
+        $action = true;
+        while ($action == true){
+            $generate_card = HelpAccountCard::generationAccountCard();
+            $card = Account_card::where('card_number', '=', $generate_card['card_number'])->first();
+            if($card != null){
+                $generate_card = HelpAccountCard::generationAccountCard();
+                $action =false;
+            }
+            $action =false;
+        }
+
+
+
         $generate_card1 = HelpAccountCard::generationAccountCard();
         $card = new Account_card();
         $card->card_number = $generate_card['card_number'];

@@ -352,6 +352,7 @@ class ComposerStaticInita2bf8d9a5d3422bcffcc84447994520b
         'App\\Components\\AddUserHelper' => __DIR__ . '/../..' . '/app/Components/AddUserHelper.php',
         'App\\Components\\HelpAccountCard' => __DIR__ . '/../..' . '/app/Components/HelpAccountCard.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Currency' => __DIR__ . '/../..' . '/app/Currency.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
