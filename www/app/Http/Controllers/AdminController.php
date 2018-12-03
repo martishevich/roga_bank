@@ -62,7 +62,7 @@ class AdminController extends Controller
             $search = DB::table('logins')
                 ->leftJoin('phone_users', 'logins.id', '=', 'phone_users.user_id')
                 ->leftJoin('mail_users', 'logins.id', '=', 'mail_users.user_id')
-                ->select('logins.login', 'logins.firstName', 'logins.lastName', 'logins.numberPassport','logins.identificationNumber', 'phone_users.phone_number', 'mail_users.mail')
+                ->select('logins.login', 'logins.firstName', 'logins.lastName', 'logins.middleName', 'logins.numberPassport','logins.identificationNumber', 'phone_users.phone_number', 'mail_users.mail')
                 ->where('logins.login', '=', $_POST['searchUser'])
                 ->orWhere('logins.firstName', '=', $_POST['searchUser'])
                 ->orWhere('phone_users.phone_number', '=', $_POST['searchUser'])
@@ -119,6 +119,16 @@ class AdminController extends Controller
         }
 
         return view('admin.createUser');
+
+    }
+
+    public function show($login) {
+
+        $myLogin = Login::where('login', '=', $login)->first();
+        $user = Phone_user::where('user_id', '=', $myLogin->id)->first();
+        $mail = Mail_user::where('user_id', '=', $myLogin->id)->first();
+
+        return view('admin.actions.show', ['login' => $myLogin, 'user' => $user, 'mail' => $mail]);
 
     }
 
