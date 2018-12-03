@@ -30,5 +30,7 @@ Route::match(['get', 'post'],'/adminPage', 'AdminController@adminPage')->middlew
 Route::match(['get', 'post'],'/createUser', 'AdminController@createUser')->middleware(['adminauthorith']);
 //Route::post('/adminPage', 'AdminController@adminPage');
 
+Route::get('adminPage/{login}/show', 'AdminController@show')->name('user.show');
+
 
 
