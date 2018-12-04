@@ -18,7 +18,7 @@ class CreatePhoneUsersTable extends Migration
             $table->string('phone_number');
             $table->tinyInteger('main_phone')->unsigned()->default(0);
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('logins');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
 
         });

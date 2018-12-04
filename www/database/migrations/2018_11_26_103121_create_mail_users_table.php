@@ -18,7 +18,7 @@ class CreateMailUsersTable extends Migration
             $table->string('mail');
             $table->tinyInteger('main_mail')->unsigned()->default(0);
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('logins');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

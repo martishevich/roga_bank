@@ -1,7 +1,7 @@
 @include('errors')
 
 {!! Form::open(array('action' => 'AdminController@createUser')) !!}
-{!! Form::label('login', 'Login'); !!}<br>
+{!! Form::label('login', 'User'); !!}<br>
 {!! Form::text('login')!!}<br>
 {!! Form::label('password', 'Password'); !!}<br>
 {!! Form::password('password')!!}<br>

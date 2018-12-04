@@ -10,7 +10,7 @@ class Account_card extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Login');
+        return $this->belongsTo('App\User');
     }
     public static function addAccountCard( $first_name, $last_name, $currency, $user_id)
     {

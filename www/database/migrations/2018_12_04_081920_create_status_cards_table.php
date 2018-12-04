@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArchiveOfCardsTable extends Migration
+class CreateStatusCardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateArchiveOfCardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('archive-of-cards', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('status_cards', function (Blueprint $table) {
             $table->increments('id');
-            $table->biginteger('card_number');
-            $table->string('status_card');
-            $table->timestamps();
+            $table->string('name_status');
+            $table->text('status_description');
         });
     }
 
@@ -29,6 +27,6 @@ class CreateArchiveOfCardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('archive-of-cards');
+        Schema::dropIfExists('status_cards');
     }
 }
