@@ -13,7 +13,7 @@ use App\Mail_user;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\Admin;
-use App\Login;
+use App\User;
 use App\Account_card;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -110,8 +110,8 @@ class AdminController extends Controller
 
 
 
-            Login::addUser($_POST['login'],$_POST['password'],$_POST['lastName'] ,$_POST['firstName'],$_POST['middleName'],$_POST['numberPassport'],$_POST['identificationNumber'],$_POST['birthday']);
-            $user = Login::where('numberPassport', '=', $_POST['numberPassport'])->first();
+            User::addUser($_POST['login'],$_POST['password'],$_POST['lastName'] ,$_POST['firstName'],$_POST['middleName'],$_POST['numberPassport'],$_POST['identificationNumber'],$_POST['birthday']);
+            $user = User::where('numberPassport', '=', $_POST['numberPassport'])->first();
             Phone_user::addPhone($_POST['phone'],1 ,$user->id);
             Mail_user::addMail($_POST['mail'],1 ,$user->id);
             Account_card::addAccountCard($_POST['firstName'], $_POST['lastName'],$_POST['currency'], $user->id);

@@ -7,7 +7,7 @@
  */
 
 namespace App\Components;
-use App\Login;
+use App\User;
 use App\Account_card;
 
 

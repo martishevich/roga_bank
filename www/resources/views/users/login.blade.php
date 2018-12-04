@@ -2,7 +2,7 @@
 
 @section('content')--}}
     {!! Form::open(array('action' => 'UserController@login')) !!}
-    {!! Form::label('login', 'Login'); !!}
+    {!! Form::label('login', 'User'); !!}
     {!! Form::text('login')!!}
     {!! Form::label('password', 'Password'); !!}
     {!! Form::password('password')!!}

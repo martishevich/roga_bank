@@ -2,7 +2,7 @@
 
 @section('content')--}}
     {!!  Form::open(array('action' => 'AdminController@loginAdmin')) !!}
-    {!! Form::label('login', 'Login'); !!}
+    {!! Form::label('login', 'User'); !!}
     {!!  Form::text('login')!!}
     {!! Form::label('password', 'Password'); !!}
     {!!  Form::password('password')!!}

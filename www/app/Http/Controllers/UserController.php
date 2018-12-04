@@ -9,7 +9,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Login;
+use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -24,7 +24,7 @@ class UserController extends Controller
                 'password' => 'required|exists:logins'
             ];
             $this->validate($request, $rules);
-            $loginOk = Login::where('login', '=', $_POST['login'])->first();
+            $loginOk = User::where('login', '=', $_POST['login'])->first();
             $request->session()->put('id', $loginOk->id);
 
             //$hashedpassword = md5($_POST['password']);
@@ -43,7 +43,7 @@ class UserController extends Controller
 
 
         $value = $request->session();
-        $loginOk = Login::find(session('id'));
+        $loginOk = User::find(session('id'));
         if (isset($_POST['submit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');

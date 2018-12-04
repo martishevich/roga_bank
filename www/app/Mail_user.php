@@ -8,7 +8,7 @@ class Mail_user extends Model
 {
     public function user()
     {
-        return $this->belongsTo('App\Login');
+        return $this->belongsTo('App\User');
     }
 
     public static function addMail($mail, $main_mail, $user_id)

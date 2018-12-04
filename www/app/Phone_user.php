@@ -8,7 +8,7 @@ class Phone_user extends Model
 {
     public function user()
     {
-        return $this->belongsTo('App\Login');
+        return $this->belongsTo('App\User');
     }
 
     public static function addPhone($phone_number, $main_phone  , $user_id)
