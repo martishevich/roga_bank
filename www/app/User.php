@@ -20,6 +20,14 @@ class User extends Model
     {
         return $this->hasMany('App\Account_card','user_id');
     }
+    public function userStatus()
+    {
+        return $this->hasMany('App\User_status','user_id');
+    }
+    public function cardStatus()
+    {
+        return $this->hasMany('App\Card_status','user_id');
+    }
     public static function addUser($login, $password, $lastName, $firstName, $middleName, $numberPassport, $identificationNumber, $birthday)
     {
         $dataUser = new User;

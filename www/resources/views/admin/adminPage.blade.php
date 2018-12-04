@@ -48,7 +48,7 @@ return '<input type="submit" value="search" name="search">';
             <td><?php echo $search[0]->phone_number?></td>
             <td><?php echo $search[0]->mail?></td>
             <td>
-                <a href="{{ route('user.show', $search[0]->login) }}">
+                <a href="{{ route('user.show', $search[0]->id) }}">
                     <i class="fa fa-eye"></i>
                 </a>
                 <a href="#">
