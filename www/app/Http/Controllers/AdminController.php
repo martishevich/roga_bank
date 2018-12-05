@@ -144,4 +144,10 @@ class AdminController extends Controller
 
     }
 
+    public function softDelete($id) {
+
+
+
+    }
+
 }

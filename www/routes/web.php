@@ -34,5 +34,8 @@ Route::post('/createUser', 'AdminController@createUser')->middleware(['adminauth
 Route::get('adminPage/{id}/show', 'AdminController@show')->name('user.show');
 Route::post('adminPage/{id}/show', 'AdminController@show');
 
+Route::delete('adminPage/{id}/destroy', 'AdminController@destroy')->name('user.destroy');
+
+
 
 
