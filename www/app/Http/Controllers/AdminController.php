@@ -146,8 +146,8 @@ class AdminController extends Controller
 
     public function softDelete($id) {
 
-        sesf
-
+        User::find($id)->delete();
+        return redirect()->action('AdminController@adminPage');
     }
 
 }

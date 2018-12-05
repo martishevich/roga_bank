@@ -54,9 +54,12 @@ return '<input type="submit" value="search" name="search">';
                 <a href="#">
                     <i class="fa fa-pencil-square-o"></i>
                 </a>
-                <a href="#">
+                {!! Form::open(['method' => 'DELETE',
+                                    'route' => ['user.delete', $search[0]->id]]) !!}
+                <button onclick="return confirm('Are you sure?')">
                     <i class="fa fa-times"></i>
-                </a>
+                </button>
+                {!! Form::close() !!}
             </td>
         </tr>
         <?php }?>
