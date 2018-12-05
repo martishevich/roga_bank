@@ -24,14 +24,14 @@ class StoreCreatePost extends FormRequest
     public function rules()
     {
         return [
-            'login' => 'required',
+            'login' => 'required|unique:users',
             'password' => 'required|min:8',
-            'lastName' => 'required',
-            'firstName' => 'required',
-            'middleName' => 'required',
+            'lastName' => 'required|alpha',
+            'firstName' => 'required|alpha',
+            'middleName' => 'required|alpha',
             'numberPassport' => ['required', 'regex:/^[А-Я]{2}[0-9]{7}/u'],
             'identificationNumber' => 'required|size:14',
-            'phone' => 'required|digits_between:9,12',
+            'phone' => 'required|digits_between:9,12|integer',
             'mail' => 'required|email',
             'birthday' => 'required|date|after:01/01/1900|before:today'
         ];

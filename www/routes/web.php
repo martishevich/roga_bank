@@ -2,6 +2,7 @@
 
 use \Illuminate\Support\Facades\DB;
 use App\Task;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,20 +17,20 @@ use App\Task;
 Route::get('/', 'MainController@index');
 
 Route::get('/about', function () {
-	return view('main/about');
+    return view('main/about');
 });
 
-//Route::get('/login', 'UserController@login');
-Route::match(['get', 'post'],'/login', 'UserController@login');
-Route::match(['get', 'post'],'/userPage', 'UserController@userPage')->middleware(['authorith']);
-//Route::post('/userPage', 'UserController@userPage');
 
-Route::match(['get', 'post'],'/loginAdmin', 'AdminController@loginAdmin');
-//Route::post('/loginAdmin', 'AdminController@loginAdmin');
-Route::match(['get', 'post'],'/adminPage', 'AdminController@adminPage')->middleware(['adminauthorith']);
-Route::get('/createUser', 'AdminController@showCreateUser')->middleware(['adminauthorith']);
+Route::match(['get', 'post'], '/login', 'UserController@login');
+Route::match(['get', 'post'], '/userPage', 'UserController@userPage')->middleware(['authorith']);
+
+
+Route::match(['get', 'post'], '/loginAdmin', 'AdminController@loginAdmin');
+
+Route::match(['get', 'post'], '/adminPage', 'AdminController@adminPage')->middleware(['adminauthorith']);
+Route::match(['get', 'post'], '/createUser', 'AdminController@showCreateUser')->middleware(['adminauthorith']);
 Route::post('/createUser', 'AdminController@createUser')->middleware(['adminauthorith']);
-//Route::post('/adminPage', 'AdminController@adminPage');
+
 
 Route::get('adminPage/{id}/show', 'AdminController@show')->name('user.show');
 Route::post('adminPage/{id}/show', 'AdminController@show');
