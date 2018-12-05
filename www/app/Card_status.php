@@ -18,4 +18,8 @@ class Card_status extends Model
         $userStatus->comment = $comment;
         $userStatus->save();
     }
+    public static function getCardStatus($id)
+    {
+
+    }
 }
