@@ -23,6 +23,7 @@ use App\Components\HelpAccountCard;
 use App\Currency;
 use App\User_status;
 use App\Card_status;
+use App\Http\Requests\StoreCreatePost;
 
 class AdminController extends Controller
 {
@@ -93,26 +94,11 @@ class AdminController extends Controller
     }
 
 
-    public function createUser(Request $request)
+    public function createUser(StoreCreatePost $request)
     {
 
         if ($request->isMethod('post')){
-
-           $validatedData = $request->validate([
-               'login' => 'required',
-               'password' => 'required|min:8',
-               'lastName' => 'required',
-               'firstName' => 'required',
-               'middleName' => 'required',
-               'numberPassport' => ['required', 'regex:/^[А-Я]{2}[0-9]{7}/u'],
-               'identificationNumber' => 'required|size:14',
-               'phone' => 'required|digits_between:9,12',
-               'mail' => 'required|email',
-               'birthday' => 'required|date|after:01/01/1900|before:today'
-          ]);
-
-
-
+            dump($request);
             User::addUser($_POST['login'],$_POST['password'],$_POST['lastName'] ,$_POST['firstName'],$_POST['middleName'],$_POST['numberPassport'],$_POST['identificationNumber'],$_POST['birthday']);
             $user = User::where('numberPassport', '=', $_POST['numberPassport'])->first();
             Phone_user::addPhone($_POST['phone'],1 ,$user->id);
@@ -125,6 +111,11 @@ class AdminController extends Controller
             return redirect()->action('AdminController@adminPage');
         }
 
+        return view('admin.createUser');
+
+    }
+    public function showCreateUser()
+    {
         return view('admin.createUser');
 
     }

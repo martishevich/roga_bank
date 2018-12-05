@@ -19,4 +19,8 @@ class User_status extends Model
         $userStatus->comment = $comment;
         $userStatus->save();
     }
+    public static function getUserStatus($id)
+    {
+
+    }
 }
