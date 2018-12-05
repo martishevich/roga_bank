@@ -5,6 +5,13 @@ return '<input type="submit" value="block the card" name="block">';
 {!! Form::macro('exit2', function () {
 return '<input type="submit" value="unlock" name="unlock">';
 });!!}
+{!! Form::macro('exit3', function () {
+return '<input type="submit" value="block user" name="block_users">';
+});!!}
+
+{!! Form::macro('exit4', function () {
+return '<input type="submit" value="unlock user" name="unlock_users">';
+});!!}
 
 <table>
     <tr>
@@ -15,26 +22,26 @@ return '<input type="submit" value="unlock" name="unlock">';
         <td>birthday</td>
     </tr>
     <tr>
-        <td>{{ $login->login }}</td>
-        <td>{{ $login->lastName }}</td>
-        <td>{{ $login->firstName }}</td>
-        <td>{{ $login->middleName }}</td>
-        <td>{{ $login->birthday }}</td>
+        <td>{{ $user->login }}</td>
+        <td>{{ $user->lastName }}</td>
+        <td>{{ $user->firstName }}</td>
+        <td>{{ $user->middleName }}</td>
+        <td>{{ $user->birthday }}</td>
     </tr>
     <tr>
         <td>numberPassport</td>
         <td>identificationNumber</td>
     </tr>
     <tr>
-        <td>{{ $login->numberPassport }}</td>
-        <td>{{ $login->identificationNumber }}</td>
+        <td>{{ $user->numberPassport }}</td>
+        <td>{{ $user->identificationNumber }}</td>
     </tr>
     <tr>
         <td>phone number</td>
         <td>mail</td>
     </tr>
     <tr>
-        <td>{{ $user->phone_number }}</td>
+        <td>{{ $phone->phone_number }}</td>
         <td>{{ $mail->mail }}</td>
     </tr>
     <tr>
@@ -62,9 +69,11 @@ return '<input type="submit" value="unlock" name="unlock">';
 
 
 
-{!! Form::open(array('url' => 'adminPage/'.$login->id.'/show', 'method' => 'post'))!!}
+{!! Form::open(array('url' => 'adminPage/'.$user->id.'/show', 'method' => 'post'))!!}
 {!! Form::exit1()!!}
-{!! Form::exit2()!!}
+{!! Form::exit2()!!}<br>
+{!! Form::exit3()!!}
+{!! Form::exit4()!!}
 {!! Form::close()!!}
 
 
