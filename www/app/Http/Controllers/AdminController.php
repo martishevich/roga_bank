@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Components\AddUserHelper;
 use App\Phone_user;
 use App\Mail_user;
 use App\Status_user;
@@ -24,6 +25,7 @@ use App\Currency;
 use App\User_status;
 use App\Card_status;
 use App\Http\Requests\StoreCreatePost;
+use App\User_salt;
 
 class AdminController extends Controller
 {
@@ -32,7 +34,7 @@ class AdminController extends Controller
     {
         if ($request->isMethod('post')) {
             $rules = [
-                'login' => 'required|max:30',
+                'login'    => 'required|max:30',
                 'password' => 'required|exists:admins'
             ];
 
@@ -66,18 +68,6 @@ class AdminController extends Controller
             $search = User::search();
         }
 
-        $action = true;
-        while ($action == true) {
-            $generate_card = HelpAccountCard::generationAccountCard();
-            $card = Account_card::where('card_number', '=', $generate_card['card_number'])->first();
-            if ($card != null) {
-                $generate_card = HelpAccountCard::generationAccountCard();
-                $action = false;
-            }
-            $action = false;
-        }
-
-
         return view('admin.adminPage', compact('loginOk', 'value', 'search'));
     }
 
@@ -95,6 +85,7 @@ class AdminController extends Controller
             User_status::addUserStatus($user->id, 1, 'user registred');
             Card_status::addCardStatus($user->id, 1, 'card make');
             Card_status::addCardStatus($user->id, 2, 'maked');
+            User_salt::addSalt($user->id);
             return redirect()->action('AdminController@adminPage');
 
         }
@@ -111,14 +102,8 @@ class AdminController extends Controller
 
     public function show($id)
     {
-        $user = User::where('id', '=', $id)->first();
-        $phone = Phone_user::where('user_id', '=', $user->id)->first();
-        $mail = Mail_user::where('user_id', '=', $user->id)->first();
-        $card = Account_card::where('user_id', '=', $user->id)->first();
-        $user_status = User::find($id)->userStatus->last();
-        $user_status = Status_user::where('id', '=', $user_status->status_id)->first();
-        $card_status = User::find($id)->cardStatus->last();
-        $card_status = Status_card::where('id', '=', $card_status->status_id)->first();
+
+        $user = User::find($id);
         if (isset($_POST['block'])) {
             Card_status::addCardStatus($user->id, 7, 'blocked');
             unset($_POST['block']);
@@ -139,7 +124,8 @@ class AdminController extends Controller
             unset($_POST['unlock_users']);
             return redirect('adminPage/' . $user->id . '/show');
         }
-        return view('admin.actions.show', ['user' => $user, 'phone' => $phone, 'mail' => $mail, 'card' => $card, 'user_status' => $user_status, 'card_status' => $card_status]);
+        dump(date("Y-m-d", strtotime("-18 year", microtime(true))));
+        return view('admin.actions.show', ['user' => $user]);
 
     }
 

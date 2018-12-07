@@ -41,8 +41,8 @@ return '<input type="submit" value="unlock user" name="unlock_users">';
         <td>mail</td>
     </tr>
     <tr>
-        <td>{{ $phone->phone_number }}</td>
-        <td>{{ $mail->mail }}</td>
+        <td>{{ $user->phone['0']->phone_number }}</td>
+        <td>{{ $user->mail['0']->mail }}</td>
     </tr>
     <tr>
         <td>card number</td>
@@ -50,23 +50,20 @@ return '<input type="submit" value="unlock user" name="unlock_users">';
         <td>expiration date</td>
     </tr>
     <tr>
-        <td>{{ $card->card_number }}</td>
-        <td>{{ $card->CVV }}</td>
-        <td>{{ $card->expiration_date }}</td>
+        <td>{{ $user->account_card['0']->card_number }}</td>
+        <td>{{ $user->account_card['0']->CVV }}</td>
+        <td>{{ $user->account_card['0']->expiration_date }}</td>
     </tr>
     <tr>
         <td>User status</td>
         <td>Card status</td>
     </tr>
     <tr>
-        <td>{{ $user_status->name_status_user }}</td>
-        <td>{{ $card_status->name_status }}</td>
+        <td>{{ $user->userStatus->last()->userStatus->name_status_user }}</td>
+        <td>{{ $user->cardStatus->last()->nameStatus->name_status }}</td>
     </tr>
 
 </table><br>
-
-
-
 
 
 {!! Form::open(array('url' => 'adminPage/'.$user->id.'/show', 'method' => 'post'))!!}

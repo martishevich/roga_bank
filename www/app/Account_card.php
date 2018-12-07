@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Components\HelpAccountCard;
 use App\Currency;
+use App\Components\AddUserHelper;
+
 class Account_card extends Model
 {
 
@@ -12,20 +14,22 @@ class Account_card extends Model
     {
         return $this->belongsTo('App\User');
     }
-    public static function addAccountCard( $first_name, $last_name, $currency, $user_id)
+
+    public static function addAccountCard($first_name, $last_name, $currency, $user_id)
     {
         $action = true;
-        while ($action == true){
+        while ($action == true) {
             $generate_card = HelpAccountCard::generationAccountCard();
             $card = Account_card::where('card_number', '=', $generate_card['card_number'])->first();
-            if($card != null){
+            if ($card != null) {
                 $generate_card = HelpAccountCard::generationAccountCard();
-                $action =false;
+                $action = false;
             }
-            $action =false;
+            $action = false;
         }
 
-
+        $last_name = AddUserHelper::up($last_name);
+        $first_name = AddUserHelper::up($first_name);
 
         $generate_card1 = HelpAccountCard::generationAccountCard();
         $card = new Account_card();
@@ -33,7 +37,7 @@ class Account_card extends Model
         $card->CVV = $generate_card1['cvv'];
         $card->first_name = $first_name;
         $card->last_name = $last_name;
-        $card->expiration_date =  $generate_card['valid_thru'];
+        $card->expiration_date = $generate_card['valid_thru'];
         $card->currency = $currency;
         $card->user_id = $user_id;
         $card->save();

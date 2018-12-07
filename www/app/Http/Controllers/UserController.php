@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\User_salt;
+use App\Components\GenirateSalt;
 
 class UserController extends Controller
 {
@@ -21,33 +23,27 @@ class UserController extends Controller
         if ($request->isMethod('post')) {
             $rules = [
                 'login' => 'required|max:10',
-                'password' => 'required|exists:logins'
+                'password' => 'required|exists:users'
             ];
             $this->validate($request, $rules);
             $loginOk = User::where('login', '=', $_POST['login'])->first();
             $request->session()->put('id', $loginOk->id);
-
-            //$hashedpassword = md5($_POST['password']);
-
             if ($_POST['login'] == $loginOk->login && $_POST['password'] == $loginOk->password) {
-
                 return redirect()->action('UserController@userPage');
             }
-
         }
         return view('users.login');
     }
 
     public function userPage(Request $request)
     {
-
-
         $value = $request->session();
         $loginOk = User::find(session('id'));
         if (isset($_POST['submit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
+        $salt = GenirateSalt::salt();
 
         return view('users.userPage', compact('loginOk', 'value'));
     }

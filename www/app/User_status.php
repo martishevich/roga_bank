@@ -11,6 +11,11 @@ class User_status extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function userStatus()
+    {
+        return $this->belongsTo('App\Status_user', 'status_id');
+    }
+
     public static function addUserStatus($user_id, $status_id, $comment = '')
     {
         $userStatus = new User_status;
@@ -19,6 +24,7 @@ class User_status extends Model
         $userStatus->comment = $comment;
         $userStatus->save();
     }
+
     public static function getUserStatus($id)
     {
 
