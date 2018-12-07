@@ -40,8 +40,8 @@ return '<input type="submit" value="search" name="search">';
         <?php foreach ($search as $row) {?>
         <tr>
             <td><?php echo $search[0]->login?></td>
-            <td><?php echo $search[0]->firstName?></td>
             <td><?php echo $search[0]->lastName?></td>
+            <td><?php echo $search[0]->firstName?></td>
             <td><?php echo $search[0]->middleName?></td>
             <td><?php echo $search[0]->numberPassport?></td>
             <td><?php echo $search[0]->identificationNumber?></td>

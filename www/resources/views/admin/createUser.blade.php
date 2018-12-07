@@ -1,4 +1,4 @@
-@include('errors')
+
 
 {!! Form::open(array('action' => 'AdminController@createUser')) !!}
 {!! Form::label('login', 'User'); !!}<br>
@@ -25,3 +25,4 @@
 {!! Form::select('currency', array('USD' => 'USD', 'EUR' => 'EUR', 'GBP' => 'GBP', 'BYN' => 'BYN'), 'BYN')!!}<br><br>
 {!! Form::submit('Админ Нажми меня!')  !!}
 {!! Form::close() !!}
+@include('errors')

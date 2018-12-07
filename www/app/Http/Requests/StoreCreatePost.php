@@ -31,9 +31,9 @@ class StoreCreatePost extends FormRequest
             'middleName' => 'required|alpha',
             'numberPassport' => ['required', 'regex:/^[А-Я]{2}[0-9]{7}/u'],
             'identificationNumber' => 'required|size:14',
-            'phone' => 'required|digits_between:9,12|integer',
+            'phone' => 'required|min:9',
             'mail' => 'required|email',
-            'birthday' => 'required|date|after:01/01/1900|before:today'
+            'birthday' => 'required|date|after:1910/01/01|before:today'.date("Y-m-d", strtotime("-18 year", microtime(true)))
         ];
     }
 }
