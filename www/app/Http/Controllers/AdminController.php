@@ -114,12 +114,12 @@ class AdminController extends Controller
             unset($_POST['unlock_users']);
             return redirect('adminPage/' . $user->id . '/show');
         }
-        dump(date("Y-m-d", strtotime("-18 year", microtime(true))));
+//        dump(date("Y-m-d", strtotime("-18 year", microtime(true))));
         return view('admin.actions.show', ['user' => $user]);
+    }
 
     public function softDelete($id)
     {
-
         $user = User::find($id)->delete();
         return redirect()->action('AdminController@adminPage', ['user' => $user]);
     }
