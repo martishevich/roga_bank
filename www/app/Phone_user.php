@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Components\AddUserHelper;
 class Phone_user extends Model
 {
     public function user()
@@ -11,10 +11,10 @@ class Phone_user extends Model
         return $this->belongsTo('App\User');
     }
 
-    public static function addPhone($phone_number, $main_phone  , $user_id)
+    public static function addPhone($phone_number, $main_phone, $user_id)
     {
         $phone = new Phone_user;
-        $phone->phone_number = $phone_number;
+        $phone->phone_number = AddUserHelper::filterPhone($phone_number);
         $phone->main_phone = $main_phone;
         $phone->user_id = $user_id;
         $phone->save();
@@ -22,9 +22,11 @@ class Phone_user extends Model
     public static function updateDataPhone($id_phone, $phone_number, $main_phone, $user_id)
     {
         $phone = Phone_user::find($id_phone);
-        $phone->phone_number = $phone_number;
+        $phone->phone_number = AddUserHelper::filterPhone($phone_number);
         $phone->main_phone = $main_phone;
         $phone->user_id = $user_id;
         $phone->save();
     }
+
+
 }

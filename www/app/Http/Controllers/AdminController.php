@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Components\AddUserHelper;
 use App\Phone_user;
 use App\Mail_user;
 use App\Status_user;
@@ -24,6 +25,7 @@ use App\Currency;
 use App\User_status;
 use App\Card_status;
 use App\Http\Requests\StoreCreatePost;
+use App\User_salt;
 
 class AdminController extends Controller
 {
@@ -31,7 +33,7 @@ class AdminController extends Controller
     {
         if ($request->isMethod('post')) {
             $rules = [
-                'login' => 'required|max:30',
+                'login'    => 'required|max:30',
                 'password' => 'required|exists:admins'
             ];
             $this->validate($request, $rules);
@@ -57,36 +59,17 @@ class AdminController extends Controller
             return redirect()->action('AdminController@createUser');
         }
         if (isset($_POST['search'])) {
-            $search = DB::table('users')
-                ->leftJoin('phone_users', 'users.id', '=', 'phone_users.user_id')
-                ->leftJoin('mail_users', 'users.id', '=', 'mail_users.user_id')
-                ->select('users.id', 'users.login', 'users.firstName', 'users.lastName', 'users.middleName', 'users.numberPassport', 'users.identificationNumber', 'phone_users.phone_number', 'mail_users.mail')
-                ->where('users.login', '=', $_POST['searchUser'])
-                ->orWhere('users.firstName', '=', $_POST['searchUser'])
-                ->orWhere('phone_users.phone_number', '=', $_POST['searchUser'])
-                ->orWhere('mail_users.mail', '=', $_POST['searchUser'])
-                ->groupBy('users.login')
-                ->get();
+            $search = User::search();
         }
 
-        $action = true;
-        while ($action == true) {
-            $generate_card = HelpAccountCard::generationAccountCard();
-            $card = Account_card::where('card_number', '=', $generate_card['card_number'])->first();
-            if ($card != null) {
-                $generate_card = HelpAccountCard::generationAccountCard();
-                $action = false;
-            }
-            $action = false;
-        }
         return view('admin.adminPage', compact('loginOk', 'value', 'search'));
     }
 
     public function createUser(StoreCreatePost $request)
     {
+
         if ($request->isMethod('post')) {
-            dump($request);
-            User::addUser($_POST['login'], $_POST['password'], $_POST['lastName'], $_POST['firstName'], $_POST['middleName'], $_POST['numberPassport'], $_POST['identificationNumber'], $_POST['birthday']);
+            User::addUser($_POST);
             $user = User::where('numberPassport', '=', $_POST['numberPassport'])->first();
             Phone_user::addPhone($_POST['phone'], 1, $user->id);
             Mail_user::addMail($_POST['mail'], 1, $user->id);
@@ -95,38 +78,44 @@ class AdminController extends Controller
             User_status::addUserStatus($user->id, 1, 'user registred');
             Card_status::addCardStatus($user->id, 1, 'card make');
             Card_status::addCardStatus($user->id, 2, 'maked');
+            User_salt::addSalt($user->id);
             return redirect()->action('AdminController@adminPage');
+
         }
         return view('admin.createUser');
     }
 
-    public function showCreateUser()
+    public function showCreateUser(Request $request)
     {
         return view('admin.createUser');
     }
 
     public function show($id)
     {
-        $myLogin = User::where('id', '=', $id)->first();
-        $user = Phone_user::where('user_id', '=', $myLogin->id)->first();
-        $mail = Mail_user::where('user_id', '=', $myLogin->id)->first();
-        $card = Account_card::where('user_id', '=', $myLogin->id)->first();
-        $user_status = User::find(1)->userStatus->last();
-        $user_status = Status_user::where('id', '=', $user_status->status_id)->first();
-        $card_status = User::find(1)->cardStatus->last();
-        $card_status = Status_card::where('id', '=', $card_status->status_id)->first();
+
+        $user = User::find($id);
         if (isset($_POST['block'])) {
-            Card_status::addCardStatus($myLogin->id, 7, 'blocked');
+            Card_status::addCardStatus($user->id, 7, 'blocked');
             unset($_POST['block']);
-            return redirect('adminPage/' . $myLogin->id . '/show');
+            return redirect('adminPage/' . $user->id . '/show');
         }
         if (isset($_POST['unlock'])) {
-            Card_status::addCardStatus($myLogin->id, 2, 'unlock');
+            Card_status::addCardStatus($user->id, 2, 'unlock');
             unset($_POST['unlock']);
-            return redirect('adminPage/' . $myLogin->id . '/show');
+            return redirect('adminPage/' . $user->id . '/show');
         }
-        return view('admin.actions.show', ['login' => $myLogin, 'user' => $user, 'mail' => $mail, 'card' => $card, 'user_status' => $user_status, 'card_status' => $card_status]);
-    }
+        if (isset($_POST['block_users'])) {
+            User_status::addUserStatus($user->id, 5, 'blocked');
+            unset($_POST['block_users']);
+            return redirect('adminPage/' . $user->id . '/show');
+        }
+        if (isset($_POST['unlock_users'])) {
+            User_status::addUserStatus($user->id, 1, 'unlock');
+            unset($_POST['unlock_users']);
+            return redirect('adminPage/' . $user->id . '/show');
+        }
+        dump(date("Y-m-d", strtotime("-18 year", microtime(true))));
+        return view('admin.actions.show', ['user' => $user]);
 
     public function softDelete($id)
     {

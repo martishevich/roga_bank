@@ -10,6 +10,12 @@ class Card_status extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function nameStatus()
+    {
+        return $this->belongsTo('App\Status_card', 'status_id');
+    }
+
     public static function addCardStatus($user_id, $status_id, $comment = '')
     {
         $userStatus = new Card_status;
@@ -18,6 +24,7 @@ class Card_status extends Model
         $userStatus->comment = $comment;
         $userStatus->save();
     }
+
     public static function getCardStatus($id)
     {
 
