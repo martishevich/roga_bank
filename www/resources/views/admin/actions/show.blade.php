@@ -17,6 +17,7 @@ return '<input type="submit" value="block user" name="block_users" class="btn bt
 return '<input type="submit" value="unlock user" name="unlock_users" class="btn btn-primary">';
 });!!}
 
+    
 <table class="table">
     <thead>
     <tr>
