@@ -2,12 +2,31 @@
 
 @section('content')
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste perferendis ipsum at unde laboriosam saepe nulla error ullam mollitia quas sunt dolores fugiat exercitationem, nobis pariatur vitae provident? Placeat at quam, nam illo consequuntur laboriosam repudiandae officiis eveniet velit laborum commodi nemo earum, autem itaque. Perferendis nostrum voluptates recusandae exercitationem.</p>
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand">Bank System</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="/login">Login</a>
+                    <a class="nav-link" href="/about">About</a>
+                </nav>
+            </div>
+        </header>
+
+        <main role="main" class="inner cover">
+            <h1 class="cover-heading">"Roga & Kopyta"</h1>
+            <p class="lead">Welcome to Bank system, which allows you to login, to create your own card and make some
+                transactions.</p>
+        </main>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+                <p>Bank template by <strong>Roga</strong> team</p>
+            </div>
+        </footer>
+    </div>
 
 @endsection
 
-@section('footer')
-
-@endsection
 
 

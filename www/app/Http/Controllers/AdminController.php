@@ -29,7 +29,6 @@ use App\User_salt;
 
 class AdminController extends Controller
 {
-
     public function loginAdmin(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -37,22 +36,18 @@ class AdminController extends Controller
                 'login'    => 'required|max:30',
                 'password' => 'required|exists:admins'
             ];
-
             $this->validate($request, $rules);
             $loginOk = Admin::where('login', '=', $_POST['login'])->first();
             $request->session()->put('idAdmin', $loginOk->id);
             if ($_POST['login'] == $loginOk->login && $_POST['password'] == $loginOk->password) {
                 return redirect()->action('AdminController@adminPage');
             }
-
         }
-
         return view('admin.loginAdmin');
     }
 
     public function adminPage(Request $request)
     {
-
         $value = $request->session()->all();
         $loginOk = Admin::find($value['idAdmin']);
         if (isset($_POST['submit'])) {
@@ -63,14 +58,12 @@ class AdminController extends Controller
         if (isset($_POST['create'])) {
             return redirect()->action('AdminController@createUser');
         }
-
         if (isset($_POST['search'])) {
             $search = User::search();
         }
 
         return view('admin.adminPage', compact('loginOk', 'value', 'search'));
     }
-
 
     public function createUser(StoreCreatePost $request)
     {
@@ -89,15 +82,12 @@ class AdminController extends Controller
             return redirect()->action('AdminController@adminPage');
 
         }
-
         return view('admin.createUser');
-
     }
 
     public function showCreateUser(Request $request)
     {
         return view('admin.createUser');
-
     }
 
     public function show($id)
@@ -124,9 +114,20 @@ class AdminController extends Controller
             unset($_POST['unlock_users']);
             return redirect('adminPage/' . $user->id . '/show');
         }
-        dump(date("Y-m-d", strtotime("-18 year", microtime(true))));
+//        dump(date("Y-m-d", strtotime("-18 year", microtime(true))));
         return view('admin.actions.show', ['user' => $user]);
+    }
 
+    public function softDelete($id)
+    {
+        $user = User::find($id)->delete();
+        return redirect()->action('AdminController@adminPage', ['user' => $user]);
+    }
+
+    public function edit($id)
+    {
+        $myUser = User::find($id);
+        return view('admin.actions.edit', ['user' => $myUser]);
     }
 
 }
