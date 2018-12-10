@@ -6,9 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\MainController;
 use App\Components\AddUserHelper;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Model
 {
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
+
     public function phone()
     {
         return $this->hasMany('App\Phone_user', 'user_id');

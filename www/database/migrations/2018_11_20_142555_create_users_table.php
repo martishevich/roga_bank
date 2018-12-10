@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->text('numberPassport');
             $table->text('identificationNumber');
             $table->date('birthday');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
