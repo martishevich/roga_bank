@@ -1,27 +1,26 @@
-@include('errors')
+@extends('layout')
 
-{!! Form::open(array('action' => 'AdminController@createUser')) !!}
-{!! Form::label('login', 'User'); !!}<br>
-{!! Form::text('login')!!}<br>
-{!! Form::label('password', 'Password'); !!}<br>
-{!! Form::password('password')!!}<br>
-{!! Form::label('lastName', 'Last Name'); !!}<br>
-{!! Form::text('lastName')!!}<br>
-{!! Form::label('firstName', 'First Name'); !!}<br>
-{!! Form::text('firstName')!!}<br>
-{!! Form::label('middleName', 'Middle Name'); !!}<br>
-{!! Form::text('middleName')!!}<br>
-{!! Form::label('numberPassport', 'Passport Number'); !!}<br>
-{!! Form::text('numberPassport')!!}<br>
-{!! Form::label('identificationNumber', 'Identification Number'); !!}<br>
-{!! Form::text('identificationNumber')!!}<br>
-{!! Form::label('phone', 'Phone Number'); !!}<br>
-{!! Form::text('phone')!!}<br>
-{!! Form::label('mail', 'Email'); !!}<br>
-{!! Form::text('mail')!!}<br>
-{!! Form::label('birthday', 'Birthday'); !!}<br>
-{!! Form::date('birthday')!!}<br>
-{!! Form::label('cardСurrency', 'Сard Currency'); !!}<br>
-{!! Form::select('currency', array('USD' => 'USD', 'EUR' => 'EUR', 'GBP' => 'GBP', 'BYN' => 'BYN'), 'BYN')!!}<br><br>
-{!! Form::submit('Админ Нажми меня!')  !!}
-{!! Form::close() !!}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            {!! Form::open(array('action' => 'AdminController@createUser')) !!}
+            {!! Form::text('login', null, array('placeholder'=>'Login', 'class' => 'form-control'))!!}
+            {!! Form::password('password', array('placeholder'=>'Password', 'id' => 'password', 'class' => 'form-control'))!!}
+            {!! Form::text('lastName', null, array('placeholder'=>'Last Name', 'class' => 'form-control'))!!}
+            {!! Form::text('firstName', null, array('placeholder'=>'First Name', 'class' => 'form-control'))!!}
+            {!! Form::text('middleName', null, array('placeholder'=>'Middle Name', 'class' => 'form-control'))!!}
+            {!! Form::text('numberPassport', null, array('placeholder'=>'Passport Number', 'class' => 'form-control'))!!}
+            {!! Form::text('identificationNumber', null, array('placeholder'=>'Identification Number', 'class' => 'form-control'))!!}
+            {!! Form::text('phone', null, array('placeholder'=>'Phone Number', 'class' => 'form-control'))!!}
+            {!! Form::text('mail', null, array('placeholder'=>'Email', 'class' => 'form-control'))!!}
+            {!! Form::date('birthday', 'Birthday', ['class' => 'form-control'])!!}
+            {!! Form::label('currency', 'Select currency') !!}
+            {!! Form::select('currency', array('USD' => 'USD', 'EUR' => 'EUR', 'GBP' => 'GBP', 'BYN' => 'BYN'), 'BYN')!!}<br>
+            {!! Form::submit('Create')  !!}
+            {!! Form::close() !!}
+        </div>
+        @include('errors')
+    </div>
+</div>
+
+
