@@ -27,14 +27,14 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="col-md-8">
             <nav class="nav nav-pills nav-justified">
-                <a class="nav-link " href="/userUpdateData">profile reducting</a>
+                <a class="nav-link active" href="#">profile reducting</a>
                 <a class="nav-link" href="#">transactions</a>
             </nav>
         </div>
         <div class="col-md-4">
             <form method="post" action="/userPage" class="form_header">
                 @csrf
-                <span><?php  echo $loginOk->login;?></span>
+
                 <input type="submit" value="exit" name="submit" class="btn btn-light">
             </form>
         </div>
@@ -43,14 +43,14 @@
 
 <div class="userPay">
     <form method="post" action="/userPage">
-            @csrf
-            <input type="radio" name="password" value="" checked class="formBox" id="no_pass">
-            <label for="no_pass"> без онлайн платежей</label>
-            <input type="radio" name="password" value="pass" class="formBox" id="pass">
-            <label for="pass">с онлайн платежами</label>
-            <input name="pass" value="" id="formBox_pass" disabled="disabled">
-            <input type="submit" value="add update" name="add">
-            <p><?php echo $message;?></p>
+        @csrf
+        <input type="radio" name="password" value="" checked class="formBox" id="no_pass">
+        <label for="no_pass"> без онлайн платежей</label>
+        <input type="radio" name="password" value="pass" class="formBox" id="pass">
+        <label for="pass">с онлайн платежами</label>
+        <input name="pass" value="" id="formBox_pass" disabled="disabled">
+        <input type="submit" value="add update" name="add">
+
     </form>
 
 

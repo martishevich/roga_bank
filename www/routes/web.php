@@ -23,7 +23,7 @@ Route::get('/about', function () {
 
 Route::match(['get', 'post'], '/login', 'UserController@login');
 Route::match(['get', 'post'], '/userPage', 'UserController@userPage')->middleware(['authorith']);
-
+Route::match(['get', 'post'], '/userUpdateData', 'UserController@userUpdateData')->middleware(['authorith']);
 
 Route::match(['get', 'post'], '/loginAdmin', 'AdminController@loginAdmin');
 

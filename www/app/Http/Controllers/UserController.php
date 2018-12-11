@@ -39,13 +39,34 @@ class UserController extends Controller
     {
         $value = $request->session();
         $loginOk = User::find(session('id'));
+        $id = $request->session()->get('id');
+        if ($request->isMethod('post')) {
+            $rules = [
+                'pass' => 'required|alpha_num'
+            ];
+            $this->validate($request, $rules);
+
+            User::updatePay($id, $_POST['pass']);
+        }
+
+        if(User::getPassPay($id)=='NULL'){
+            $message ='оплата невозможна';
+        }
+        else{
+            $message ='оплата осуществима';
+        }
+
         if (isset($_POST['submit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
-        $salt = GenirateSalt::salt();
 
-        return view('users.userPage', compact('loginOk', 'value'));
+        return view('users.userPage', compact('loginOk', 'value' ,'message'));
+    }
+
+    public function userUpdateData()
+    {
+        return view('users.userUpdateData');
     }
 
 }

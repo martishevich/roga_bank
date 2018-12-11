@@ -13,7 +13,7 @@ class AddUserHelper
 {
     public static function up($string)
     {
-        $char = mb_strtoupper(substr($string,0,2), "utf-8"); // это первый символ
+        $char = mb_strtoupper(substr($string,0,1), "utf-8"); // это первый символ
         $string[0] = $char[0];
         $string[1] = $char[1];
         return $string;
