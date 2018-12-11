@@ -9,7 +9,16 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Http\Request;
+
 class PaymentController extends Controller
 {
+    public function paymentPage(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            dump($_POST);
+        }
+        return view('payment.paymentPage');
+    }
 
 }

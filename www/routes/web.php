@@ -41,4 +41,6 @@ Route::get('adminPage/{id}/edit', 'AdminController@edit')->name('user.edit');
 
 Route::put('adminPage/{id}/update', 'AdminController@update')->name('user.update');
 
+Route::get('/paymentPage', 'PaymentController@paymentPage');
+Route::post('paymentPage', 'PaymentController@paymentPage');
 

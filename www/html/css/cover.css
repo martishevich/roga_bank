@@ -104,3 +104,16 @@ body {
 .mastfoot {
   color: rgba(255, 255, 255, .5);
 }
+
+
+.exit_userPage{
+  margin: 0 0 530px 963px;
+}
+
+.userPay{
+  margin: -525px 0px 0px -1000px;
+}
+
+.formBox_pass{
+  margin: 0 0 0px 0px;
+}
