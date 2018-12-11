@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4 offset-md-4">
+        <div class="offset-md-2 col-md-4">
             {!! Form::open(array('action' => 'AdminController@createUser')) !!}
             {!! Form::text('login', null, array('placeholder'=>'Login', 'class' => 'form-control'))!!}
             {!! Form::password('password', array('placeholder'=>'Password', 'id' => 'password', 'class' => 'form-control'))!!}
@@ -14,12 +14,16 @@
             {!! Form::text('phone', null, array('placeholder'=>'Phone Number', 'class' => 'form-control'))!!}
             {!! Form::text('mail', null, array('placeholder'=>'Email', 'class' => 'form-control'))!!}
             {!! Form::date('birthday', 'Birthday', ['class' => 'form-control'])!!}
-            {!! Form::label('currency', 'Select currency') !!}
-            {!! Form::select('currency', array('USD' => 'USD', 'EUR' => 'EUR', 'GBP' => 'GBP', 'BYN' => 'BYN'), 'BYN')!!}
+            <div class="form-control">
+                {!! Form::label('currency', 'Select currency') !!}
+                {!! Form::select('currency', array('USD' => 'USD', 'EUR' => 'EUR', 'GBP' => 'GBP', 'BYN' => 'BYN'), 'BYN')!!}
+            </div>
             <br>
-            {!! Form::submit('Create')  !!}
+            {!! Form::submit('Create', ['class' => 'btn btn-primary btn-lg btn-block'])  !!}
             {!! Form::close() !!}
         </div>
-        @include('errors')
+        <div class="col-md-4">
+            @include('errors')
+        </div>
     </div>
 </div>

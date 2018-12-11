@@ -33,7 +33,7 @@ class StoreCreatePost extends FormRequest
             'identificationNumber' => 'required|size:14',
             'phone' => 'required|min:9',
             'mail' => 'required|email',
-            'birthday' => 'required|date|after:1910/01/01|before:today'.date("Y-m-d", strtotime("-18 year", microtime(true)))
+            'birthday' => 'required|date|after:1910/01/01|before:'.date("Y-m-d", strtotime("-18 year", microtime(true)))
         ];
     }
 }

@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <?php  echo $loginOk->login;?> you logged in successfully
+            <?php  echo $loginOk->login;?>, you logged in successfully
 
             {!! Form::macro('exit1', function () {
             return '<input type="submit" value="exit" name="submit" class="btn btn-danger">';
@@ -26,9 +26,8 @@
                 {!! Form::close() !!}
             </div>
 
-
             {!! Form::open(array('action' => 'AdminController@adminPage')) !!}
-            {!!  Form::text('searchUser')!!}
+            {!! Form::text('searchUser')!!}
             {!! Form::exit3('search')  !!}
             {!! Form::close() !!}
         </div>
@@ -60,7 +59,7 @@
                     <td><?php echo $search[0]->identificationNumber?></td>
                     <td><?php echo $search[0]->phone_number?></td>
                     <td><?php echo $search[0]->mail?></td>
-                    <td>
+                    <td class="actions">
                         <a href="{{ route('user.show', $search[0]->id) }}">
                             <i class="fa fa-eye"></i>
                         </a>
@@ -69,7 +68,7 @@
                         </a>
                         {!! Form::open(['method' => 'DELETE',
                                        'route' => ['user.delete', $search[0]->id]]) !!}
-                        <button onclick="return confirm('Are you sure?')">
+                        <button class="deleteRecord" onclick="return confirm('Are you sure?')">
                             <i class="fa fa-times"></i>
                         </button>
                         {!! Form::close() !!}
@@ -83,5 +82,5 @@
 </div>
 
 
-<script src="https://use.fontawesome.com/b5c931b2df.js"></script>
+
 
