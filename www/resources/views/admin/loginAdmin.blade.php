@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-4 offset-md-4">
             {!! Form::open(array('class' => 'needs-validation', 'action' => 'AdminController@loginAdmin', 'novalidate' => 'novalidate')) !!}
-            <h1 class="h3 mb-3 font-weight-normal">Sign in for user</h1>
+            <h1 class="h3 mb-3 font-weight-normal">Sign in for admin</h1>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     {!! Form::text('login', null, array('required' => 'required', 'placeholder'=>'Login', 'id' => 'firstName', 'class' => 'form-control'))!!}
