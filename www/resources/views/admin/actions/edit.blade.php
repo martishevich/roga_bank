@@ -19,9 +19,7 @@
                 {!! Form::select('currency', array('USD' => 'USD', 'EUR' => 'EUR', 'GBP' => 'GBP', 'BYN' => 'BYN'), 'BYN')!!}
             </div>
             {!! Form::submit('Update', ['class' => 'btn btn-warning btn-lg btn-block'])  !!}
-
             {!! Form::close() !!}
-
         </div>
         <div class="col-md-4">
             @include('errors')

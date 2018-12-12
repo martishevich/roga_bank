@@ -39,15 +39,15 @@
             <?php if(isset($_POST['search'])){ ?>
             <table class="table">
                 <tr>
-                    <th scope="col">login</th>
-                    <th scope="col">firstName</th>
-                    <th scope="col">lastName</th>
-                    <th scope="col">middleName</th>
-                    <th scope="col">numberPassport</th>
-                    <th scope="col">identificationNumber</th>
-                    <th scope="col">phone_number</th>
-                    <th scope="col">mail</th>
-                    <th scope="col">actions</th>
+                    <th scope="col">Login</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Middle Name</th>
+                    <th scope="col">Passport Number</th>
+                    <th scope="col">Identification Number</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Actions</th>
                 </tr>
                 <?php foreach ($search as $row) {?>
                 <tr>
