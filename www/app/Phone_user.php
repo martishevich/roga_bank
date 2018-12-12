@@ -19,7 +19,6 @@ class Phone_user extends Model
         $phone->user_id = $user_id;
         $phone->save();
     }
-
     public static function updateDataPhone($phone_number,$user_id)
     {
         $phone = Phone_user::where('user_id', '=', $user_id)->first();
