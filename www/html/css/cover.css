@@ -105,62 +105,15 @@ body {
   color: rgba(255, 255, 255, .5);
 }
 
-/*
-* Custom styles
-*/
 
-.btn-warning {
-    margin-left: 20px;
+.exit_userPage{
+  margin: 0 0 530px 963px;
 }
 
-.action {
-    margin-top: 20px;
+.userPay{
+  margin: -525px 0px 0px -1000px;
 }
 
-.form-control {
-    margin-top: 7px;
-}
-
-.fa-eye {
-    color: #007bff;
-}
-
-.fa-pencil-square-o {
-    color: #ffc107;
-}
-
-.fa-times {
-    color: #dc3545;
-}
-
-.deleteRecord {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-}
-
-.actions {
-    display: flex;
-    justify-content: space-between;
-}
-
-.unlock {
-    margin-top: 10px;
-}
-
-.edit .btn-warning {
-    margin-left: 0;
-    margin-top: 7px;
-}
-
-.exit_userPage {
-    margin: 0 0 530px 963px;
-}
-
-.userPay {
-    margin: -525px 0px 0px -1000px;
-}
-
-.formBox_pass {
-    margin: 0 0 0px 0px;
+.formBox_pass{
+  margin: 0 0 0px 0px;
 }
