@@ -107,5 +107,24 @@ class User extends Model
 
     }
 
+    public static function updateUser($id ,$post)
+    {
+        $lastName = AddUserHelper::up($post['lastName']);
+        $firstName = AddUserHelper::up($post['firstName']);
+        $middleName = AddUserHelper::up($post['middleName']);
+
+        $dataUser = User::find($id);
+        $dataUser->login = $post['login'];
+        $dataUser->password = $post['password'];
+        $dataUser->lastName = $lastName;
+        $dataUser->firstName = $firstName;
+        $dataUser->middleName = $middleName;
+        $dataUser->numberPassport = $post['numberPassport'];
+        $dataUser->identificationNumber = $post['identificationNumber'];
+        $dataUser->birthday = $post['birthday'];
+//        $dataUser->password_pay = 'NULL';
+        $dataUser->save();
+    }
+
 
 }
