@@ -16,7 +16,7 @@
 </head>
 
 
-<body class="text-center" style="display: flex; align-items: center; height: 100%;">
+<body class="text-center" style="display: flex; align-items: center; height: 50%;">
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -27,6 +27,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="col-md-8">
             <nav class="nav nav-pills nav-justified">
+                <a class="nav-link active" href="userPage">Home</a>
                 <a class="nav-link " href="/userUpdateData">profile reducting</a>
                 <a class="nav-link" href="#">transactions</a>
             </nav>
@@ -34,46 +35,22 @@
         <div class="col-md-4">
             <form method="post" action="/userPage" class="form_header">
                 @csrf
-                <span><?php  echo $loginOk->login;?></span>
                 <input type="submit" value="exit" name="submit" class="btn btn-light">
             </form>
         </div>
     </nav>
 </header>
 
-<div class="userPay">
-    <form method="post" action="/userPage">
-            @csrf
-            <input type="radio" name="password" value="" checked class="formBox" id="no_pass">
-            <label for="no_pass"> без онлайн платежей</label>
-            <input type="radio" name="password" value="pass" class="formBox" id="pass">
-            <label for="pass">с онлайн платежами</label>
-            <input name="pass" value="" id="formBox_pass" disabled="disabled">
-            <input type="submit" value="add update" name="add">
-            <p><?php echo $message;?></p>
-    </form>
+<div class="jumbotron">
+        <div class="container">
+            <div class="col">
+                <h1 class="display-3"><?php  echo $loginOk->login;?></h1>
+                <p><?php  echo $message;?></p>
+            </div>
 
-
-
+        </div>
 </div>
 
-
-
-<script>
-    $(document).ready(function(){
-        $('input:radio.formBox').click(function () {
-            if($(this).val().length > 0){
-                $('#formBox_pass').removeAttr('disabled');
-            }
-            else
-            {
-                $('#formBox_pass').attr('disabled','disabled');
-                $('#formBox_pass').val('');
-            }
-        });
-    });
-
-</script>
 
 
 <script>

@@ -55,14 +55,13 @@ class User extends Model
 
         $dataUser = new User;
         $dataUser->login = $post['login'];
-        $dataUser->password = $post['password'];
+        $dataUser->password = md5($post['password']);
         $dataUser->lastName = $lastName;
         $dataUser->firstName = $firstName;
         $dataUser->middleName = $middleName;
         $dataUser->numberPassport = $post['numberPassport'];
         $dataUser->identificationNumber = $post['identificationNumber'];
         $dataUser->birthday = $post['birthday'];
-        $dataUser->password_pay = 'NULL';
         $dataUser->save();
     }
     public static function updateUser($id ,$post)
@@ -73,20 +72,19 @@ class User extends Model
 
         $dataUser = User::find($id);
         $dataUser->login = $post['login'];
-        $dataUser->password = $post['password'];
+        $dataUser->password = md5($post['password']);
         $dataUser->lastName = $lastName;
         $dataUser->firstName = $firstName;
         $dataUser->middleName = $middleName;
         $dataUser->numberPassport = $post['numberPassport'];
         $dataUser->identificationNumber = $post['identificationNumber'];
         $dataUser->birthday = $post['birthday'];
-        $dataUser->password_pay = 'NULL';
         $dataUser->save();
     }
     public static function updatePay($id, $pass)
     {
         $dataUser = User::find($id);
-        $dataUser->password_pay = $pass;
+        $dataUser->password_pay = md5($pass);
         $dataUser->save();
     }
     public static function getPassPay($id)

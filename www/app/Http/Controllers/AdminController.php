@@ -33,8 +33,8 @@ class AdminController extends Controller
     {
         if ($request->isMethod('post')) {
             $rules = [
-                'login'    => 'required|max:30',
-                'password' => 'required|exists:admins'
+                'login'    => 'required|max:30|exists:admins',
+                'password' => 'required '
             ];
             $this->validate($request, $rules);
             $loginOk = Admin::where('login', '=', $_POST['login'])->first();
@@ -70,7 +70,7 @@ class AdminController extends Controller
 
         if ($request->isMethod('post')) {
             User::addUser($_POST);
-            $user = User::where('numberPassport', '=', $_POST['numberPassport'])->first();
+            $user = User::latest()->first();
             Phone_user::addPhone($_POST['phone'], 1, $user->id);
             Mail_user::addMail($_POST['mail'], 1, $user->id);
             Account_card::addAccountCard($_POST['firstName'], $_POST['lastName'], $_POST['currency'], $user->id);

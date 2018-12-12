@@ -27,7 +27,7 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #dcdbe0;
+  background-color: #e9ecef;
 }
 
 body {
@@ -86,7 +86,7 @@ body {
 }
 
 .form_header{
-  margin-right: 0;
+  margin-right: -270px;
 }
 
 
