@@ -37,9 +37,7 @@ Route::post('adminPage/{id}/show', 'AdminController@show');
 
 Route::delete('adminPage/{id}/delete', 'AdminController@softDelete')->name('user.delete');
 
-Route::get('adminPage/{id}/edit', 'AdminController@edit')->name('user.edit');
-
-Route::put('adminPage/{id}/update', 'AdminController@update')->name('user.update');
+Route::match (['get', 'post'], 'adminPage/{id}/edit', 'AdminController@edit')->name('user.edit');
 
 Route::get('/paymentPage', 'PaymentController@paymentPage');
 Route::post('paymentPage', 'PaymentController@paymentPage');

@@ -19,12 +19,11 @@ class Mail_user extends Model
         $mailUser->user_id = $user_id;
         $mailUser->save();
     }
-    public static function updateDataMail($id_mail, $mail, $main_mail, $user_id)
+
+    public static function updateDataMail($mail,  $user_id)
     {
-        $mailUser = Mail_user::find($id_mail);
+        $mailUser =Mail_user::where('user_id', '=', $user_id)->first();
         $mailUser->mail = strtolower($mail);
-        $mailUser->main_mail = $main_mail;
-        $mailUser->user_id = $user_id;
         $mailUser->save();
     }
 

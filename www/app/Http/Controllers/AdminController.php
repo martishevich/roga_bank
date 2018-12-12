@@ -33,7 +33,7 @@ class AdminController extends Controller
     {
         if ($request->isMethod('post')) {
             $rules = [
-                'login'    => 'required|max:30',
+                'login' => 'required|max:30',
                 'password' => 'required|exists:admins'
             ];
             $this->validate($request, $rules);
@@ -67,7 +67,6 @@ class AdminController extends Controller
 
     public function createUser(StoreCreatePost $request)
     {
-
         if ($request->isMethod('post')) {
             User::addUser($_POST);
             $user = User::where('numberPassport', '=', $_POST['numberPassport'])->first();
@@ -92,7 +91,6 @@ class AdminController extends Controller
 
     public function show($id)
     {
-
         $user = User::find($id);
         if (isset($_POST['block'])) {
             Card_status::addCardStatus($user->id, 7, 'blocked');
@@ -114,7 +112,6 @@ class AdminController extends Controller
             unset($_POST['unlock_users']);
             return redirect('adminPage/' . $user->id . '/show');
         }
-//        dump(date("Y-m-d", strtotime("-18 year", microtime(true))));
         return view('admin.actions.show', ['user' => $user]);
     }
 
@@ -124,9 +121,17 @@ class AdminController extends Controller
         return redirect()->action('AdminController@adminPage', ['user' => $user]);
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $myUser = User::find($id);
+        if ($request->isMethod('post')) {
+
+            User::updateUser($id, $_POST);
+            Phone_user::updateDataPhone($_POST['phone'], $id);
+            Mail_user::updateDataMail($_POST['mail'], $id);
+            return redirect()->action('AdminController@adminPage');
+
+        }
         return view('admin.actions.edit', ['user' => $myUser]);
     }
 
