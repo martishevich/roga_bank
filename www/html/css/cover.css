@@ -48,6 +48,7 @@ body {
  */
 .masthead {
   margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .masthead-brand {
@@ -106,6 +107,50 @@ body {
 }
 
 
+/*
+* Custom styles
+*/
+
+.btn-warning {
+    margin-left: 20px;
+}
+
+.action {
+    margin-top: 20px;
+}
+
+.fa-eye {
+    color: #007bff;
+}
+
+.fa-pencil-square-o {
+    color: #ffc107;
+}
+
+.fa-times {
+    color: #dc3545;
+}
+
+.deleteRecord {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.unlock {
+    margin-top: 10px;
+}
+
+.edit .btn-warning {
+    margin-left: 0;
+    margin-top: 7px;
+}
+
 .exit_userPage{
   margin: 0 0 530px 963px;
 }
@@ -116,4 +161,13 @@ body {
 
 .formBox_pass{
   margin: 0 0 0px 0px;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+.table {
+    display: block;
+    margin-top: 20px;
 }
