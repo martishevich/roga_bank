@@ -42,3 +42,5 @@ Route::match (['get', 'post'], 'adminPage/{id}/edit', 'AdminController@edit')->n
 Route::get('/paymentPage', 'PaymentController@paymentPage');
 Route::post('paymentPage', 'PaymentController@paymentPage');
 
+Route::match (['get', 'post'], '/cardConfirmation', 'PaymentController@cardConfirmation');
+Route::match (['get', 'post'], '/passwordConfirmation', 'PaymentController@passwordConfirmation');

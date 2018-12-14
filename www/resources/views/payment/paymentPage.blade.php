@@ -1,13 +1,18 @@
+<form class="card p-2"method="post" action="/cardConfirmation?id=<?php echo $_GET['id']?>">
+    <div class="form-group">
+        @csrf
+        <label>Card Number</label><br>
+        <input type="text" name="card_number" class="form-control"><br>
+        <label>CVV</label><br>
+        <input type="text" name="CVV" class="form-control"><br>
+        <label>First name</label><br>
+        <input type="text" name="first_name" class="form-control"><br>
+        <label>Last name</label><br>
+        <input type="text" name="last_name" class="form-control"><br>
+        <label>Expirtion data</label><br>
+        <input type="text" name="last_name" class="form-control"><br>
+        <input type="submit" value="add update" name="pay" class="btn btn-primary">
+    </div>
+</form>
 
-
-{!! Form::open(array('action' => 'PaymentController@paymentPage')) !!}
-{!! Form::label('cardNumber', 'Card Number'); !!}<br>
-{!! Form::text('cardNumber')!!}<br>
-{!! Form::label('CVV', 'CVV'); !!}<br>
-{!! Form::password('CVV')!!}<br>
-{!! Form::label('first_name', 'First name'); !!}<br>
-{!! Form::password('first_name')!!}<br>
-{!! Form::label('last_name', 'Last name'); !!}<br>
-{!! Form::password('last_name')!!}<br>
-{!! Form::submit('Нажми меня!')  !!}
-{!! Form::close() !!}
+@include('errors')

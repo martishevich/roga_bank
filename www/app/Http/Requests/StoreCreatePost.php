@@ -31,7 +31,7 @@ class StoreCreatePost extends FormRequest
             'middleName' => 'required|alpha|min:2',
             'numberPassport' => ['required', 'regex:/^[А-Я]{2}[0-9]{7}/u'],
             'identificationNumber' => 'required|size:14',
-            'phone' => 'required|min:9',
+            'phone' => 'required|min:9|max:13',
             'mail' => 'required|email',
             'birthday' => 'required|date|after:1910/01/01|before:'.date("Y-m-d", strtotime("-18 year", microtime(true)))
         ];
