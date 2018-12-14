@@ -49,14 +49,16 @@
                 <div class="form-group">
                     @csrf
                     <label>Изменить номер телефона</label>
-                    <input type="text" name="phone" class="form-control" value=<?php echo $user->phone->first()->phone_number?>>
+                    <input type="text" name="phone" class="form-control"
+                           value=<?php echo $user->phone->first()->phone_number?>>
                     <label>Изменить mail</label>
                     <input type="text" name="mail" class="form-control" value=<?php echo $user->mail->first()->mail?>>
                     <input type="radio" name="password" value="" checked class="formBox" id="no_pass">
                     <label for="no_pass"> без онлайн платежей</label>
                     <input type="radio" name="password" value="pass" class="formBox" id="pass">
                     <label for="pass">с онлайн платежами</label>
-                    <input type="password" name="pass" value="" id="formBox_pass" disabled="disabled" class="form-control" >
+                    <input type="password" name="pass" value="" id="formBox_pass" disabled="disabled"
+                           class="form-control">
                     <input type="submit" value="add update" name="add" class="btn btn-primary">
                 </div>
             </form>
@@ -68,16 +70,14 @@
 </div>
 
 
-
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('input:radio.formBox').click(function () {
-            if($(this).val().length > 0){
+            if ($(this).val().length > 0) {
                 $('#formBox_pass').removeAttr('disabled');
             }
-            else
-            {
-                $('#formBox_pass').attr('disabled','disabled');
+            else {
+                $('#formBox_pass').attr('disabled', 'disabled');
                 $('#formBox_pass').val('');
             }
         });
