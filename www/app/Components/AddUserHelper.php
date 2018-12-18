@@ -43,4 +43,13 @@ class AddUserHelper
         return '375'.$new_phone;
     }
 
+    public static function createCode()
+    {
+        $code ='';
+        for ($i = 0; $i < 6; $i++) {
+            $code .= rand(0, 9);
+        }
+        return $code;
+    }
+
 }

@@ -24,9 +24,11 @@ Route::get('/about', function () {
 Route::match(['get', 'post'], '/login', 'UserController@login');
 Route::match(['get', 'post'], '/userPage', 'UserController@userPage')->middleware(['authorith']);
 Route::match(['get', 'post'], '/userUpdateData', 'UserController@userUpdateData')->middleware(['authorith']);
+Route::match(['get', 'post'], '/transfer', 'TransferController@transferPage')->middleware(['authorith']);
+Route::match(['get', 'post'], '/transferPass', 'TransferController@transferPass')->middleware(['authorith']);
+Route::match(['get', 'post'], '/transferConfirm', 'TransferController@transferConfirm')->middleware(['authorith']);
 
 Route::match(['get', 'post'], '/loginAdmin', 'AdminController@loginAdmin');
-
 Route::match(['get', 'post'], '/adminPage', 'AdminController@adminPage')->middleware(['adminauthorith']);
 Route::match(['get', 'post'], '/createUser', 'AdminController@showCreateUser')->middleware(['adminauthorith']);
 Route::post('/createUser', 'AdminController@createUser')->middleware(['adminauthorith']);

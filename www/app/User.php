@@ -46,6 +46,10 @@ class User extends Model
     {
         return $this->hasMany('App\User_salt', 'user_id');
     }
+    public function confirmationCode()
+    {
+        return $this->hasMany('App\ConfirmationCode', 'user_id');
+    }
 
     public static function addUser($post)
     {

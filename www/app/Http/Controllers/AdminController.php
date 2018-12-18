@@ -26,6 +26,7 @@ use App\User_status;
 use App\Card_status;
 use App\Http\Requests\StoreCreatePost;
 use App\User_salt;
+use App\ConfirmationCode;
 
 class AdminController extends Controller
 {
@@ -73,6 +74,7 @@ class AdminController extends Controller
             Phone_user::addPhone($_POST['phone'], 1, $user->id);
             Mail_user::addMail($_POST['mail'], 1, $user->id);
             Account_card::addAccountCard($_POST['firstName'], $_POST['lastName'], $_POST['currency'], $user->id);
+            ConfirmationCode::addCode(AddUserHelper::createCode(), $user->id);
             User_status::addUserStatus($user->id, 2, 'user tratment');
             User_status::addUserStatus($user->id, 1, 'user registred');
             Card_status::addCardStatus($user->id, 1, 'card make');

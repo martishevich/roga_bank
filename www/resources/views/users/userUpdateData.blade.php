@@ -29,20 +29,21 @@
             <nav class="nav nav-pills nav-justified">
                 <a class="nav-link " href="/userPage">Home</a>
                 <a class="nav-link active" href="#">profile reducting</a>
+                <a class="nav-link" href="/transfer">transfer</a>
                 <a class="nav-link" href="#">transactions</a>
             </nav>
         </div>
         <div class="col-md-4">
             <form method="post" action="/userPage" class="form_header">
                 @csrf
-
+                {{$sum['0']->sum}}
                 <input type="submit" value="exit" name="submit" class="btn btn-light">
             </form>
         </div>
     </nav>
 </header>
 
-<div class="jumbotron">
+<div class="jumbotron ">
     <div class="container">
         <div class="col">
             <form method="post" action="/userUpdateData">
@@ -67,7 +68,7 @@
 </div>
 
 
-</div>
+
 
 
 <script>
