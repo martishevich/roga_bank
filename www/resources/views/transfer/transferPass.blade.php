@@ -27,14 +27,13 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="col-md-8">
             <nav class="nav nav-pills nav-justified">
-                <a class="nav-link active" href="userPage">Home</a>
+                <a class="nav-link " href="userPage">Home</a>
                 <a class="nav-link " href="/userUpdateData">profile reducting</a>
-                <a class="nav-link" href="/transfer">transfer</a>
+                <a class="nav-link " href="/transfer">transfer</a>
                 <a class="nav-link" href="#">transactions</a>
             </nav>
         </div>
         <div class="col-md-4">
-
             <form method="post" action="/userPage" class="form_header">
                 @csrf
                 {{$sum['0']->sum}}
@@ -44,15 +43,21 @@
     </nav>
 </header>
 
-<div class="jumbotron">
-        <div class="container">
-            <div class="col">
-                <h1 class="display-3"><?php  echo $loginOk->login;?></h1>
-                <p><?php  echo $message;?></p>
-            </div>
-
+<div class="jumbotron transfer">
+    <div class="container">
+        <div class="col">
+            <form method="post" action="/transferConfirm">
+                <div class="form-group">
+                    @csrf
+                    <label>Код подтверждения</label>
+                    <input type="text" name="confirmation_code" class="form-control">
+                    <input type="submit" value="add update" name="add" class="btn btn-primary">
+                </div>
+            </form>
         </div>
+    </div>
 </div>
+
 
 
 

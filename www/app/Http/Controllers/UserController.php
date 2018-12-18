@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\User_salt;
 use App\Components\GenirateSalt;
+use App\Transaction;
 
 class UserController extends Controller
 {
@@ -43,8 +44,8 @@ class UserController extends Controller
         $value = $request->session();
         $loginOk = User::find(session('id'));
         $id = $request->session()->get('id');
-
-        if (User::getPassPay($id) == 'NULL') {
+        $sum = Transaction::countingAmount($loginOk->account_card['0']->card_number);
+        if (User::getPassPay($id) == '') {
             $message = 'оплата невозможна';
         } else {
             $message = 'оплата осуществима';
@@ -55,7 +56,7 @@ class UserController extends Controller
             return redirect()->action('UserController@login');
         }
 
-        return view('users.userPage', compact('loginOk', 'value', 'message'));
+        return view('users.userPage', compact('loginOk', 'value', 'message','sum'));
     }
 
     public function userUpdateData(Request $request)
@@ -63,7 +64,7 @@ class UserController extends Controller
         $value = $request->session();
         $user = User::find(session('id'));
         $id = $request->session()->get('id');
-
+        $sum = Transaction::countingAmount($user->account_card['0']->card_number);
         if ($request->isMethod('post')) {
             $rules = [
                 'phone' => 'required|min:9',
@@ -83,7 +84,7 @@ class UserController extends Controller
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
-        return view('users.userUpdateData', compact('user'));
+        return view('users.userUpdateData', compact('user','sum'));
     }
 
 }
