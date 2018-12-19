@@ -58,7 +58,9 @@
                     <label>Сумма</label>
                     <input type="text" name="sum" class="form-control">
                     <input type="submit" value="add update" name="add" class="btn btn-primary">
+
                 </div>
+                {{session('message')}}
             </form>
         </div>
     </div>
