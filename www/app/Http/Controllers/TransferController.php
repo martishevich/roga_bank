@@ -25,7 +25,7 @@ class TransferController extends Controller
         $id = $request->session()->get('id');
         $user = User::find($id);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
-        return view('transfer.transferToTheAccount',compact('sum'));
+        return view('transfer.transferToTheAccount',compact('sum','message'));
     }
 
     public function transferPass(Request $request)
@@ -33,6 +33,7 @@ class TransferController extends Controller
         $id = $request->session()->get('id');
         $user = User::find($id);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
+        $request->session()->forget('message');
         if ($request->isMethod('post')) {
             $rules = [
                 'card_number' => 'required|min:16|max:16',
@@ -41,8 +42,12 @@ class TransferController extends Controller
                 'sum' => 'required'
             ];
             $this->validate($request, $rules);
+            $request->session()->forget('message');
+            if($sum['0']->sum<$_POST['sum']){
+                return redirect('/transfer')->with('message', 'на карте недостаточно средств');
+            }
 
-            $sum = Transaction::countingAmount($user->account_card['0']->card_number);
+
             ConfirmationCode::addData($_POST, $id);
             $date = ConfirmationCode::Where('user_id', '=', $id)->first();
             $today = date("Y-m-d H:i:s", strtotime("- 3 minute", microtime(true)));
@@ -51,6 +56,8 @@ class TransferController extends Controller
                 ConfirmationCode::updateDataPhone(AddUserHelper::createCode(), $id);
 
                 $code = ConfirmationCode::Where('user_id', '=', $id)->first();
+
+                //sending to mail
                 $objDemo = new \stdClass();
                 $objDemo->first_name = $user->firstName;
                 $objDemo->last_name = $user->lastName;
@@ -68,18 +75,21 @@ class TransferController extends Controller
             $id = $request->session()->get('id');
             $code = ConfirmationCode::Where('user_id', '=', $id)->first();
             $user = User::find($id);
+            $sum = Transaction::countingAmount($user->account_card['0']->card_number);
             if ($_POST['confirmation_code'] == $code->confirmation_code) {
-                dd(Transaction::countingAmount($user->account_card['0']->card_number));
                 $data =json_decode($code->data, true);
+                if($sum['0']->sum<$data['sum']){
+                    return redirect('/transfer')->with('message', 'на карте недостаточно средств');
+                }
                 Transaction::reducingSender($user->account_card['0']->card_number,$data, 'BYN');
                 Transaction::addTransacton($user->account_card['0']->card_number,$data,'BYN','transfer');
-                dump($data);
+
                 $status = 'прошел успешно';
             } else {
                 $status = 'не удался';
             }
         }
-        return view('transfer.transferConfirm', compact('status'));
+        return view('transfer.transferConfirm', compact('status', 'sum'));
     }
 
 }
