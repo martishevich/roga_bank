@@ -63,7 +63,7 @@ class TransferController extends Controller
                 $objDemo->last_name = $user->lastName;
                 $objDemo->code = $code->confirmation_code;
 
-                Mail::to("karshak0609@yandex.ru")->send(new CardMail($objDemo));
+                Mail::to($user->mail['0']->mail)->send(new CardMail($objDemo));
             }
         }
         return view('transfer.transferPass',compact('sum'));
