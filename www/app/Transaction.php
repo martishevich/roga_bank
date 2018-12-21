@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class Transaction extends Model
 {
-    public static function addTransacton($sender_account, $data_recipient, $currency, $comment = '')
+    public static function addTransacton($sender_account, $data_recipient_number, $data_recipient_sum, $currency, $comment = '')
     {
         $transaction = new Transaction;
         $transaction->sender_account = $sender_account;
-        $transaction->beneficiary_account = $data_recipient['card_number'];
-        $transaction->sum = $data_recipient['sum'];
+        $transaction->beneficiary_account = $data_recipient_number;
+        $transaction->sum = $data_recipient_sum;
         $transaction->currency = $currency;
         $transaction->comment = $comment;
         $transaction->save();
@@ -23,7 +23,7 @@ class Transaction extends Model
         $transaction = new Transaction;
         $transaction->sender_account = $sender_account;
         $transaction->beneficiary_account = $sender_account;
-        $transaction->sum = '-' . $data_recipient['sum'];
+        $transaction->sum = '-' . $data_recipient;
         $transaction->currency = $currency;
         $transaction->comment = $comment;
         $transaction->save();
@@ -32,7 +32,7 @@ class Transaction extends Model
     public static function countingAmount($account)
     {
         return $search = DB::table('transactions')
-            ->select( DB::raw('SUM(sum) as sum'))
+            ->select(DB::raw('SUM(sum) as sum'))
             ->groupBy('beneficiary_account')
             ->having('beneficiary_account', '=', $account)
             ->get();
