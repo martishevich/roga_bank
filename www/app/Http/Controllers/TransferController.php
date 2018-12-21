@@ -12,10 +12,10 @@ namespace App\Http\Controllers;
 use App\Components\AddUserHelper;
 use App\ConfirmationCode;
 use App\Mail\CardMail;
+use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Transaction;
 
 
 class TransferController extends Controller
@@ -25,6 +25,7 @@ class TransferController extends Controller
         $id = $request->session()->get('id');
         $user = User::find($id);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
+
         return view('transfer.transferToTheAccount',compact('sum','message'));
     }
 
@@ -81,10 +82,11 @@ class TransferController extends Controller
                 if($sum['0']->sum<$data['sum']){
                     return redirect('/transfer')->with('message', 'на карте недостаточно средств');
                 }
-                Transaction::reducingSender($user->account_card['0']->card_number,$data, 'BYN');
-                Transaction::addTransacton($user->account_card['0']->card_number,$data,'BYN','transfer');
+                Transaction::reducingSender($user->account_card['0']->card_number, $data['sum'], 'BYN');
+                Transaction::addTransacton($user->account_card['0']->card_number, $data['card_number'], $data['sum'], 'BYN', 'transfer');
 
                 $status = 'прошел успешно';
+                return redirect('/transfer');
             } else {
                 $status = 'не удался';
             }
