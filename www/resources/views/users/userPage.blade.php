@@ -30,7 +30,7 @@
                 <a class="nav-link active" href="userPage">Home</a>
                 <a class="nav-link " href="/userUpdateData">profile reducting</a>
                 <a class="nav-link" href="/transfer">transfer</a>
-                <a class="nav-link" href="#">transactions</a>
+                <a class="nav-link" href="/transaction">transactions</a>
             </nav>
         </div>
         <div class="col-md-4">

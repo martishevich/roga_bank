@@ -184,3 +184,16 @@ body {
 .headerHome{
     margin-right: 800px;
 }
+
+/*
+main form payment
+ */
+
+.main-form-payment{
+    margin-top:90px;
+}
+
+
+.main-view-transaction{
+    margin-top:700px;
+}

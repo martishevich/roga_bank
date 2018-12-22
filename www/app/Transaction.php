@@ -38,4 +38,10 @@ class Transaction extends Model
             ->get();
     }
 
+    public static function transaction($card_number)
+    {
+        return Transaction::where('beneficiary_account', '=', $card_number)
+                            ->paginate(15);
+    }
+
 }

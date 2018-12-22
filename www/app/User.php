@@ -2,11 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Http\Controllers\MainController;
 use App\Components\AddUserHelper;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 
 class User extends Model
@@ -46,6 +45,7 @@ class User extends Model
     {
         return $this->hasMany('App\User_salt', 'user_id');
     }
+
     public function confirmationCode()
     {
         return $this->hasMany('App\ConfirmationCode', 'user_id');
@@ -114,6 +114,8 @@ class User extends Model
             ->get();
 
     }
+
+
 
 
 }

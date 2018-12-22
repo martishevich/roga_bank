@@ -30,7 +30,7 @@
                 <a class="nav-link " href="/userPage">Home</a>
                 <a class="nav-link active" href="#">profile reducting</a>
                 <a class="nav-link" href="/transfer">transfer</a>
-                <a class="nav-link" href="#">transactions</a>
+                <a class="nav-link" href="/transaction">transactions</a>
             </nav>
         </div>
         <div class="col-md-4">
@@ -45,8 +45,8 @@
 
 <div class="jumbotron ">
     <div class="container">
-        <div class="col">
-            <form method="post" action="/userUpdateData">
+        <div class="col ">
+            <form method="post" action="/userUpdateData" >
                 <div class="form-group">
                     @csrf
                     <label>Изменить номер телефона</label>
