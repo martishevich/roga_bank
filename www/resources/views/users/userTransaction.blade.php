@@ -29,11 +29,12 @@
             <nav class="nav nav-pills nav-justified">
                 <a class="nav-link " href="userPage">Home</a>
                 <a class="nav-link " href="/userUpdateData">profile reducting</a>
-                <a class="nav-link active" href="/transfer">transfer</a>
-                <a class="nav-link" href="/transaction">transactions</a>
+                <a class="nav-link" href="/transfer">transfer</a>
+                <a class="nav-link active" href="/transaction">transactions</a>
             </nav>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 ">
+
             <form method="post" action="/userPage" class="form_header">
                 @csrf
                 {{$sum['0']->sum}}
@@ -43,29 +44,34 @@
     </nav>
 </header>
 
-<div class="jumbotron transfer">
+<div class="jumbotron">
     <div class="container">
-        <div class="col">
-            <form method="post" action="/transferPass">
-                <div class="form-group">
-                    @csrf
-                    <label>Номер счета</label>
-                    <input type="text" name="card_number" class="form-control">
-                    <label>Имя</label>
-                    <input type="text" name="first_name" class="form-control">
-                    <label>Фамилия</label>
-                    <input type="text" name="last_name" class="form-control">
-                    <label>Сумма</label>
-                    <input type="text" name="sum" class="form-control">
-                    <input type="submit" value="add update" name="add" class="btn btn-primary">
-
-                </div>
-                {{session('message')}}
-            </form>
+        <div class="col main-view-transaction">
+            <table class="table ">
+                <tr>
+                    <th scope="col">Sender account</th>
+                    <th scope="col">Beneficiary account</th>
+                    <th scope="col">Sum</th>
+                    <th scope="col">Currency</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Date create</th>
+                </tr>
+                <?php foreach ($allTransaction as$key => $row) {?>
+                <tr>
+                    <td><?php echo $allTransaction[$key]->sender_account?></td>
+                    <td><?php echo $allTransaction[$key]->beneficiary_account?></td>
+                    <td><?php echo $allTransaction[$key]->sum?></td>
+                    <td><?php echo $allTransaction[$key]->currency?></td>
+                    <td><?php echo $allTransaction[$key]->comment?></td>
+                    <td><?php echo $allTransaction[$key]->created_at?></td>
+                </tr>
+                <?php }?>
+            </table>
+            {{ $allTransaction->links() }}
         </div>
+
     </div>
 </div>
-@include('errors')
 
 
 
@@ -94,4 +100,6 @@
 
 </body>
 </html>
+
+
 

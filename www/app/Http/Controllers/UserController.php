@@ -10,13 +10,9 @@ namespace App\Http\Controllers;
 
 use App\Mail_user;
 use App\Phone_user;
-use Illuminate\Http\Request;
-use App\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
-use App\User_salt;
-use App\Components\GenirateSalt;
 use App\Transaction;
+use App\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -56,7 +52,7 @@ class UserController extends Controller
             return redirect()->action('UserController@login');
         }
 
-        return view('users.userPage', compact('loginOk', 'value', 'message','sum'));
+        return view('users.userPage', compact('loginOk', 'value', 'message', 'sum'));
     }
 
     public function userUpdateData(Request $request)
@@ -84,7 +80,16 @@ class UserController extends Controller
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
-        return view('users.userUpdateData', compact('user','sum'));
+        return view('users.userUpdateData', compact('user', 'sum'));
+    }
+
+    public function transaction()
+    {
+
+        $user = User::find(\session()->get('id'));
+        $allTransaction = Transaction::transaction($user->account_card['0']->card_number);
+        $sum = Transaction::countingAmount($user->account_card['0']->card_number);
+        return view('users.userTransaction',compact('allTransaction', 'sum'));
     }
 
 }

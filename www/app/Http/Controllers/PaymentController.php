@@ -59,15 +59,18 @@ class PaymentController extends Controller
             $this->validate($request, $rules);
             $user_id = $request->session()->get('id_for_pass');
             $user = User::find($user_id);
+            $sum = Transaction::countingAmount($user->account_card['0']->card_number);
             if ($user->password_pay == md5($_POST['password_pay'])) {
                 $encryption = md5($_GET['card_number'] . $_GET['total'] . $_GET['comment'] . $user->salt['0']->salt);
-                if ($encryption == $_GET['salt']) {
+                if ($encryption == $_GET['salt']&&$sum['0']->sum > $_GET['total']) {
                     Transaction::reducingSender($user->account_card['0']->card_number, $_GET['total'], 'BYN');
                     Transaction::addTransacton($user->account_card['0']->card_number, $_GET['card_number'], $_GET['total'], 'BYN', 'payment');
-                    $message = 'оплата прошла';
+                    return redirect('/customer?answer=true');
                 } else {
-                    $message = 'оплата не прошла';
+                    return redirect('/customer?answer=false');
                 }
+            } else{
+                $message = 'пароль для онлайн оплаты неверен';
             }
         }
 
