@@ -34,10 +34,10 @@
             </nav>
         </div>
         <div class="col-md-4">
-            <form method="post" action="/userPage" class="form_header">
+            <form method="post" action="/transferPass" class="form_header">
                 @csrf
                 {{$sum['0']->sum}}
-                <input type="submit" value="exit" name="submit" class="btn btn-light">
+                <input type="submit" value="exit" name="exit" class="btn btn-light">
             </form>
         </div>
     </nav>
