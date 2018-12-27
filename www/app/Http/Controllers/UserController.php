@@ -74,21 +74,27 @@ class UserController extends Controller
                 User::updatePay($id, $_POST['pass']);
             }
 
+
+
         }
 
-        if (isset($_POST['submit'])) {
+        if (isset($_POST['exit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
         return view('users.userUpdateData', compact('user', 'sum'));
     }
 
-    public function transaction()
+    public function transaction(Request $request)
     {
 
         $user = User::find(\session()->get('id'));
         $allTransaction = Transaction::transaction($user->account_card['0']->card_number);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
+        if (isset($_POST['submit'])) {
+            $request->session()->forget('id');
+            return redirect()->action('UserController@login');
+        }
         return view('users.userTransaction',compact('allTransaction', 'sum'));
     }
 

@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-4 ">
 
-            <form method="post" action="/userPage" class="form_header">
+            <form method="post" action="/transaction" class="form_header">
                 @csrf
                 {{$sum['0']->sum}}
                 <input type="submit" value="exit" name="submit" class="btn btn-light">

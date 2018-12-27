@@ -25,7 +25,10 @@ class TransferController extends Controller
         $id = $request->session()->get('id');
         $user = User::find($id);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
-
+        if (isset($_POST['exit'])) {
+            $request->session()->forget('id');
+            return redirect()->action('UserController@login');
+        }
         return view('transfer.transferToTheAccount',compact('sum','message'));
     }
 
@@ -66,6 +69,10 @@ class TransferController extends Controller
 
                 Mail::to($user->mail['0']->mail)->send(new CardMail($objDemo));
             }
+        }
+        if (isset($_POST['exit'])) {
+            $request->session()->forget('id');
+            return redirect()->action('UserController@login');
         }
         return view('transfer.transferPass',compact('sum'));
     }
