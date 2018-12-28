@@ -25,11 +25,14 @@ class TransferController extends Controller
         $id = $request->session()->get('id');
         $user = User::find($id);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
+        if(is_object($sum)){
+            $sum = $sum['0']->sum;
+        }
         if (isset($_POST['exit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
-        return view('transfer.transferToTheAccount',compact('sum','message'));
+        return view('transfer.transferToTheAccount',compact('sum'));
     }
 
     public function transferPass(Request $request)
@@ -37,6 +40,9 @@ class TransferController extends Controller
         $id = $request->session()->get('id');
         $user = User::find($id);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
+        if(is_object($sum)){
+            $sum = $sum['0']->sum;
+        }
         $request->session()->forget('message');
         if ($request->isMethod('post')) {
             $rules = [
@@ -46,12 +52,9 @@ class TransferController extends Controller
                 'sum' => 'required'
             ];
             $this->validate($request, $rules);
-            $request->session()->forget('message');
             if($sum['0']->sum<$_POST['sum']){
                 return redirect('/transfer')->with('message', 'на карте недостаточно средств');
             }
-
-
             ConfirmationCode::addData($_POST, $id);
             $date = ConfirmationCode::Where('user_id', '=', $id)->first();
             $today = date("Y-m-d H:i:s", strtotime("- 3 minute", microtime(true)));
@@ -84,6 +87,9 @@ class TransferController extends Controller
             $code = ConfirmationCode::Where('user_id', '=', $id)->first();
             $user = User::find($id);
             $sum = Transaction::countingAmount($user->account_card['0']->card_number);
+            if(is_object($sum)){
+                $sum = $sum['0']->sum;
+            }
             if ($_POST['confirmation_code'] == $code->confirmation_code) {
                 $data =json_decode($code->data, true);
                 if($sum['0']->sum<$data['sum']){

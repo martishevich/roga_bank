@@ -32,7 +32,7 @@
         <div class="col-md-4">
             <form method="post" action="/userPage" class="form_header">
                 @csrf
-                {{$sum['0']->sum}}
+                {{$sum}}
 
             </form>
         </div>
