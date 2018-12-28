@@ -37,7 +37,7 @@
 
             <form method="post" action="/userPage" class="form_header">
                 @csrf
-                {{$sum['0']->sum}}
+                {{$sum}}
                 <input type="submit" value="exit" name="submit" class="btn btn-light">
             </form>
         </div>

@@ -41,6 +41,9 @@ class UserController extends Controller
         $loginOk = User::find(session('id'));
         $id = $request->session()->get('id');
         $sum = Transaction::countingAmount($loginOk->account_card['0']->card_number);
+        if(is_object($sum)){
+            $sum = $sum['0']->sum;
+        }
         if (User::getPassPay($id) == '') {
             $message = 'оплата невозможна';
         } else {
@@ -57,10 +60,12 @@ class UserController extends Controller
 
     public function userUpdateData(Request $request)
     {
-        $value = $request->session();
         $user = User::find(session('id'));
         $id = $request->session()->get('id');
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
+        if(is_object($sum)){
+            $sum = $sum['0']->sum;
+        }
         if ($request->isMethod('post')) {
             $rules = [
                 'phone' => 'required|min:9',
@@ -73,9 +78,6 @@ class UserController extends Controller
             if (isset($_POST['pass']) && $_POST['pass'] != '') {
                 User::updatePay($id, $_POST['pass']);
             }
-
-
-
         }
 
         if (isset($_POST['exit'])) {
@@ -91,6 +93,9 @@ class UserController extends Controller
         $user = User::find(\session()->get('id'));
         $allTransaction = Transaction::transaction($user->account_card['0']->card_number);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
+        if(is_object($sum)){
+            $sum = $sum['0']->sum;
+        }
         if (isset($_POST['submit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');

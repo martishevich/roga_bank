@@ -31,17 +31,23 @@ class Transaction extends Model
 
     public static function countingAmount($account)
     {
-        return $search = DB::table('transactions')
+        $search = DB::table('transactions')
             ->select(DB::raw('SUM(sum) as sum'))
             ->groupBy('beneficiary_account')
             ->having('beneficiary_account', '=', $account)
             ->get();
+        if (isset($search)) {
+            return $search = 0;
+        } else {
+            return $search;
+        }
+
     }
 
     public static function transaction($card_number)
     {
         return Transaction::where('beneficiary_account', '=', $card_number)
-                            ->paginate(15);
+            ->paginate(15);
     }
 
 }
