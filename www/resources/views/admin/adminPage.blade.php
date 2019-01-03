@@ -63,6 +63,9 @@
                             <a href="{{ route('user.show', $search[0]->id) }}">
                                 <i class="fa fa-eye"></i>
                             </a>
+                            <a href="{{ route('user.refill', $search[0]->id) }}">
+                                <i class="fa fa-money"></i>
+                            </a>
                             <a href="{{ route('user.edit', $search[0]->id) }}">
                                 <i class="fa fa-pencil-square-o"></i>
                             </a>

@@ -152,4 +152,10 @@ class AdminController extends Controller
         return view('admin.actions.edit', ['user' => $myUser]);
     }
 
+    public function refill(Request $request, $id)
+    {
+        $myUser = User::find($id);
+        return view('admin.actions.refill', ['user' => $myUser]);
+    }
+
 }
