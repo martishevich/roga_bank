@@ -129,7 +129,7 @@ class AdminController extends Controller
         $myUser = User::find($id);
         if ($request->isMethod('post')) {
 
-            $validatedData = $request->validate([
+            $rules = $request->validate([
                 'login' => 'required',
                 'password' => 'required|min:8',
                 'lastName' => 'required|alpha',
@@ -141,7 +141,6 @@ class AdminController extends Controller
                 'mail' => 'required|email',
                 'birthday' => 'required|date|after:1910/01/01|before:'.date("Y-m-d", strtotime("-18 year", microtime(true)))
             ]);
-
 
             User::updateUser($id, $_POST);
             Phone_user::updateDataPhone($_POST['phone'], $id);
@@ -155,6 +154,14 @@ class AdminController extends Controller
     public function refill(Request $request, $id)
     {
         $myUser = User::find($id);
+        if ($request->isMethod('post')) {
+            $rules = $request->validate([
+                'phone' => 'required',
+            ]);
+            $this->validate($request, $rules);
+
+        }
+        dump($_POST);
         return view('admin.actions.refill', ['user' => $myUser]);
     }
 
