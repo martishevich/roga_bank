@@ -7,6 +7,7 @@
         <input type="text" name="refill" class="form-control" >
         <input type="submit" value="отправить на счет" name="submit" class="btn btn-primary">
     </form>
+    {{$comment}}
     @include('errors')
 </div>
 

@@ -54,7 +54,7 @@ class UserController extends Controller
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
-        dump($_POST);
+
         return view('users.userPage', compact('loginOk', 'value', 'message', 'sum'));
     }
 

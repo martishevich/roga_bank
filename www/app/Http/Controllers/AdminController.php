@@ -13,6 +13,7 @@ use App\Phone_user;
 use App\Mail_user;
 use App\Status_user;
 use App\Status_card;
+use App\Transaction;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\Admin;
@@ -154,15 +155,15 @@ class AdminController extends Controller
     public function refill(Request $request, $id)
     {
         $myUser = User::find($id);
+        $comment = '';
         if ($request->isMethod('post')) {
             $rules = $request->validate([
-                'phone' => 'required',
+                'refill' => 'required',
             ]);
-            $this->validate($request, $rules);
-
+            Transaction::addTransacton($myUser->account_card['0']->card_number, $myUser->account_card['0']->card_number,$_POST['refill'],'BYN');
+            $comment = 'оплата прошла успешно';
         }
-        dump($_POST);
-        return view('admin.actions.refill', ['user' => $myUser]);
+        return view('admin.actions.refill', ['user' => $myUser, 'comment' => $comment]);
     }
 
 }
