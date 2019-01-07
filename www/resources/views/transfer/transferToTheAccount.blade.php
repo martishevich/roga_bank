@@ -31,6 +31,7 @@
                 <a class="nav-link " href="/userUpdateData">profile reducting</a>
                 <a class="nav-link active" href="/transfer">transfer</a>
                 <a class="nav-link" href="/transaction">transactions</a>
+                <a class="nav-link" href="/api">API</a>
             </nav>
         </div>
         <div class="col-md-4">
