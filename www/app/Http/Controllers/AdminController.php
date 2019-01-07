@@ -13,6 +13,7 @@ use App\Phone_user;
 use App\Mail_user;
 use App\Status_user;
 use App\Status_card;
+use App\Transaction;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\Admin;
@@ -129,7 +130,7 @@ class AdminController extends Controller
         $myUser = User::find($id);
         if ($request->isMethod('post')) {
 
-            $validatedData = $request->validate([
+            $rules = $request->validate([
                 'login' => 'required',
                 'password' => 'required|min:8',
                 'lastName' => 'required|alpha',
@@ -142,7 +143,6 @@ class AdminController extends Controller
                 'birthday' => 'required|date|after:1910/01/01|before:'.date("Y-m-d", strtotime("-18 year", microtime(true)))
             ]);
 
-
             User::updateUser($id, $_POST);
             Phone_user::updateDataPhone($_POST['phone'], $id);
             Mail_user::updateDataMail($_POST['mail'], $id);
@@ -150,6 +150,20 @@ class AdminController extends Controller
 
         }
         return view('admin.actions.edit', ['user' => $myUser]);
+    }
+
+    public function refill(Request $request, $id)
+    {
+        $myUser = User::find($id);
+        $comment = '';
+        if ($request->isMethod('post')) {
+            $rules = $request->validate([
+                'refill' => 'required',
+            ]);
+            Transaction::addTransacton($myUser->account_card['0']->card_number, $myUser->account_card['0']->card_number,$_POST['refill'],'BYN');
+            $comment = 'оплата прошла успешно';
+        }
+        return view('admin.actions.refill', ['user' => $myUser, 'comment' => $comment]);
     }
 
 }

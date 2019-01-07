@@ -37,9 +37,9 @@ class Transaction extends Model
             ->having('beneficiary_account', '=', $account)
             ->get();
         if (isset($search)) {
-            return $search = 0;
+            return $search ;
         } else {
-            return $search;
+            return $search = 0;
         }
 
     }

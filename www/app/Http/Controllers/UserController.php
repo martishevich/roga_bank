@@ -100,6 +100,7 @@ class UserController extends Controller
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
+
         return view('users.userTransaction',compact('allTransaction', 'sum'));
     }
 
