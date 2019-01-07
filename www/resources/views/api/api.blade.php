@@ -27,18 +27,18 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="col-md-8">
             <nav class="nav nav-pills nav-justified">
-                <a class="nav-link active" href="userPage">Home</a>
+                <a class="nav-link" href="userPage">Home</a>
                 <a class="nav-link " href="/userUpdateData">profile reducting</a>
                 <a class="nav-link" href="/transfer">transfer</a>
                 <a class="nav-link" href="/transaction">transactions</a>
-                <a class="nav-link" href="/api">API</a>
+                <a class="nav-link active" href="/api">API</a>
             </nav>
         </div>
         <div class="col-md-4">
 
-            <form method="post" action="/userPage" class="form_header">
+            <form method="post" action="/api" class="form_header">
                 @csrf
-                {{$sum}}
+
                 <input type="submit" value="exit" name="submit" class="btn btn-light">
             </form>
         </div>
@@ -46,13 +46,15 @@
 </header>
 
 <div class="jumbotron">
-        <div class="container">
-            <div class="col">
-                <h1 class="display-3"><?php  echo $loginOk->login;?></h1>
-                <p><?php  echo $message;?></p>
-            </div>
-
+    <div class="container">
+        <div class="col">
+            <form method="post" action="/api" class="">
+                @csrf
+                <input type="submit" value="скачать ключ" name="key" class="btn btn-primary">
+            </form>
         </div>
+
+    </div>
 </div>
 
 
