@@ -25,9 +25,7 @@ class TransferController extends Controller
         $id = $request->session()->get('id');
         $user = User::find($id);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
-        if(is_object($sum)){
-            $sum = $sum['0']->sum;
-        }
+
         if (isset($_POST['exit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
@@ -40,9 +38,7 @@ class TransferController extends Controller
         $id = $request->session()->get('id');
         $user = User::find($id);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
-        if(is_object($sum)){
-            $sum = $sum['0']->sum;
-        }
+
         $request->session()->forget('message');
         if ($request->isMethod('post')) {
             $rules = [
@@ -87,9 +83,7 @@ class TransferController extends Controller
             $code = ConfirmationCode::Where('user_id', '=', $id)->first();
             $user = User::find($id);
             $sum = Transaction::countingAmount($user->account_card['0']->card_number);
-            if(is_object($sum)){
-                $sum = $sum['0']->sum;
-            }
+
             if ($_POST['confirmation_code'] == $code->confirmation_code) {
                 $data =json_decode($code->data, true);
                 if($sum['0']->sum<$data['sum']){

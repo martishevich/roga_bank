@@ -13,6 +13,7 @@ use App\Account_card;
 use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
 
 class PaymentController extends Controller
 {
@@ -58,16 +59,22 @@ class PaymentController extends Controller
             ];
             $this->validate($request, $rules);
             $user_id = $request->session()->get('id_for_pass');
+            $recipient = Account_card::where('card_number', '=', $_GET['card_number'])->first();
+
             $user = User::find($user_id);
             $sum = Transaction::countingAmount($user->account_card['0']->card_number);
             if ($user->password_pay == md5($_POST['password_pay'])) {
                 $encryption = md5($_GET['card_number'] . $_GET['total'] . $_GET['comment'] . $user->salt['0']->salt);
+                dump($user->salt['0']->salt);
+                dd($encryption);
                 if ($encryption == $_GET['salt']&&$sum['0']->sum > $_GET['total']) {
                     Transaction::reducingSender($user->account_card['0']->card_number, $_GET['total'], 'BYN');
                     Transaction::addTransacton($user->account_card['0']->card_number, $_GET['card_number'], $_GET['total'], 'BYN', 'payment');
-                    return redirect('/customer?answer=true');
+                    $apiResponse = new ApiController();
+                    $apiResponse->testAnswer();
+                    return redirect('/customer?status=ok');
                 } else {
-                    return redirect('/customer?answer=false');
+                    return redirect('/customer?status=false');
                 }
             } else{
                 $message = 'пароль для онлайн оплаты неверен';

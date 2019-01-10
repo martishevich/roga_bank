@@ -49,3 +49,6 @@ Route::post('paymentPage', 'PaymentController@paymentPage');
 Route::match (['get', 'post'], '/cardConfirmation', 'PaymentController@cardConfirmation');
 Route::match (['get', 'post'], '/passwordConfirmation', 'PaymentController@passwordConfirmation');
 Route::get('/customer', 'PaymentController@customer');
+
+Route::post('testApi', 'ApiController@test');
+Route::get('testAnswer', 'ApiController@testAnswer');
