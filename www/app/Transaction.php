@@ -29,19 +29,15 @@ class Transaction extends Model
         $transaction->save();
     }
 
-    public static function countingAmount($account)
+    public static function countingAmount(int $account)
     {
-        $search = DB::table('transactions')
+        $sum = DB::table('transactions')
             ->select(DB::raw('SUM(sum) as sum'))
-            ->groupBy('beneficiary_account')
-            ->having('beneficiary_account', '=', $account)
-            ->get();
-        if (isset($search)) {
-            return $search ;
-        } else {
-            return $search = 0;
-        }
+            ->where('beneficiary_account', '=', $account)
+            ->get()
+            ->first(null, 0);
 
+        return  sprintf("%01.2f" , $sum->sum);
     }
 
     public static function transaction($card_number)
