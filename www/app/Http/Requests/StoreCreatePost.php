@@ -25,7 +25,6 @@ class StoreCreatePost extends FormRequest
     {
         return [
             'login' => 'required|unique:users',
-            'password' => 'required|min:8',
             'lastName' => 'required|alpha|min:2',
             'firstName' => 'required|alpha|min:2',
             'middleName' => 'present',

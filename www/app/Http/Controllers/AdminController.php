@@ -28,6 +28,9 @@ use App\Card_status;
 use App\Http\Requests\StoreCreatePost;
 use App\User_salt;
 use App\ConfirmationCode;
+use App\Mail\UserRegistered;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -73,7 +76,6 @@ class AdminController extends Controller
 
             $rules = $request->validate([
                 'login' => 'required',
-                'password' => 'required|min:8',
                 'lastName' => 'required|alpha',
                 'firstName' => 'required|alpha',
                 'middleName' => 'present',
@@ -95,6 +97,12 @@ class AdminController extends Controller
             Card_status::addCardStatus($user->id, 1, 'card make');
             Card_status::addCardStatus($user->id, 2, 'maked');
             User_salt::addSalt($user->id);
+
+            $objDemo = new \stdClass();
+            $objDemo->password = User::$pass;
+            $objDemo->first_name = $user->firstName;
+            Mail::to($user->mail['0']->mail)->send(new UserRegistered($objDemo));
+
             return redirect()->action('AdminController@adminPage');
 
         }
@@ -146,7 +154,6 @@ class AdminController extends Controller
 
             $rules = $request->validate([
                 'login' => 'required',
-                'password' => 'required|min:8',
                 'lastName' => 'required|alpha',
                 'firstName' => 'required|alpha',
                 'middleName' => 'present',

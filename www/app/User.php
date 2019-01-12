@@ -6,7 +6,7 @@ use App\Components\AddUserHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Str;
 
 class User extends Model
 {
@@ -15,6 +15,7 @@ class User extends Model
 
     protected $dates = ['deleted_at'];
 
+    public static $pass;
 
     public function phone()
     {
@@ -51,15 +52,21 @@ class User extends Model
         return $this->hasMany('App\ConfirmationCode', 'user_id');
     }
 
+    public static function generatePassword(int $length = 8)
+    {
+        return Str::random($length);
+    }
+
     public static function addUser($post)
     {
         $lastName = AddUserHelper::up($post['lastName']);
         $firstName = AddUserHelper::up($post['firstName']);
         $middleName = $post['middleName'];
+        User::$pass = self::generatePassword();
 
         $dataUser = new User;
         $dataUser->login = $post['login'];
-        $dataUser->password = md5($post['password']);
+        $dataUser->password = md5(self::$pass);
         $dataUser->lastName = $lastName;
         $dataUser->firstName = $firstName;
         $dataUser->middleName = $middleName;
@@ -77,7 +84,6 @@ class User extends Model
 
         $dataUser = User::find($id);
         $dataUser->login = $post['login'];
-        $dataUser->password = md5($post['password']);
         $dataUser->lastName = $lastName;
         $dataUser->firstName = $firstName;
         $dataUser->middleName = $middleName;
@@ -114,8 +120,6 @@ class User extends Model
             ->get();
 
     }
-
-
 
 
 }

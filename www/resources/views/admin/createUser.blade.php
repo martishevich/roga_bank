@@ -21,13 +21,6 @@
 
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
-                    </div>
-                    {!! Form::text('password', null, $attributes = $errors->has('password') ? array('class' => 'form-control alert-danger') : array('class' => 'form-control'))!!}
-                </div>
-
-                <div class="input-group">
-                    <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Last Name</span>
                     </div>
                     {!! Form::text('lastName', null, $attributes = $errors->has('lastName') ? array('class' => 'form-control alert-danger') : array('class' => 'form-control'))!!}
