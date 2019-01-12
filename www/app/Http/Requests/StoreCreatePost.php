@@ -28,7 +28,7 @@ class StoreCreatePost extends FormRequest
             'password' => 'required|min:8',
             'lastName' => 'required|alpha|min:2',
             'firstName' => 'required|alpha|min:2',
-            'middleName' => 'required|alpha|min:2',
+            'middleName' => 'present',
             'numberPassport' => ['required', 'regex:/^[А-Я]{2}[0-9]{7}/u'],
             'identificationNumber' => 'required|size:14',
             'phone' => 'required|min:9|max:13',

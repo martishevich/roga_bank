@@ -55,7 +55,7 @@ class User extends Model
     {
         $lastName = AddUserHelper::up($post['lastName']);
         $firstName = AddUserHelper::up($post['firstName']);
-        $middleName = AddUserHelper::up($post['middleName']);
+        $middleName = $post['middleName'];
 
         $dataUser = new User;
         $dataUser->login = $post['login'];
@@ -73,7 +73,7 @@ class User extends Model
     {
         $lastName = AddUserHelper::up($post['lastName']);
         $firstName = AddUserHelper::up($post['firstName']);
-        $middleName = AddUserHelper::up($post['middleName']);
+        $middleName = $post['middleName'];
 
         $dataUser = User::find($id);
         $dataUser->login = $post['login'];
