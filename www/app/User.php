@@ -120,6 +120,4 @@ class User extends Model
             ->get();
 
     }
-
-
 }

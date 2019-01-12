@@ -31,6 +31,7 @@ use App\ConfirmationCode;
 use App\Mail\UserRegistered;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
 {
@@ -38,7 +39,7 @@ class AdminController extends Controller
     {
         if ($request->isMethod('post')) {
             $rules = [
-                'login'    => 'required|max:30|exists:admins',
+                'login' => 'required|max:30|exists:admins',
                 'password' => 'required '
             ];
             $this->validate($request, $rules);
@@ -74,17 +75,33 @@ class AdminController extends Controller
     {
         if ($request->isMethod('post')) {
 
-            $rules = $request->validate([
-                'login' => 'required',
-                'lastName' => 'required|alpha',
-                'firstName' => 'required|alpha',
-                'middleName' => 'present',
-                'numberPassport' => ['required', 'regex:/^[А-Я]{2}[0-9]{7}/u'],
-                'identificationNumber' => 'required|size:14',
-                'phone' => 'required|min:9',
-                'mail' => 'required|email',
-                'birthday' => 'required|date|after:1910/01/01|before:'.date("Y-m-d", strtotime("-18 year", microtime(true)))
-            ]);
+            $fields = Input::get('result');
+            if ($fields == 'citizen') {
+                $rules = $request->validate([
+                    'login' => 'required',
+                    'lastName' => 'required|alpha',
+                    'firstName' => 'required|alpha',
+                    'middleName' => 'present',
+                    'numberPassport' => ['required', 'regex:/^[А-Я]{2}[0-9]{7}/u'],
+                    'identificationNumber' => 'required|size:14',
+                    'phone' => 'required|min:9',
+                    'mail' => 'required|email',
+                    'birthday' => 'required|date|after:1910/01/01|before:' . date("Y-m-d", strtotime("-18 year", microtime(true)))
+                ]);
+            } else {
+                $rules = $request->validate([
+                    'login' => 'required',
+                    'lastName' => 'required|alpha',
+                    'firstName' => 'required|alpha',
+                    'middleName' => 'present',
+                    'numberPassport' => 'required',
+                    'identificationNumber' => 'required',
+                    'phone' => 'required|min:9',
+                    'mail' => 'required|email',
+                    'birthday' => 'required|date|after:1910/01/01|before:' . date("Y-m-d", strtotime("-18 year", microtime(true)))
+                ]);
+            }
+
 
             User::addUser($_POST);
             $user = User::latest()->first();
@@ -161,7 +178,7 @@ class AdminController extends Controller
                 'identificationNumber' => 'required|size:14',
                 'phone' => 'required|min:9',
                 'mail' => 'required|email',
-                'birthday' => 'required|date|after:1910/01/01|before:'.date("Y-m-d", strtotime("-18 year", microtime(true)))
+                'birthday' => 'required|date|after:1910/01/01|before:' . date("Y-m-d", strtotime("-18 year", microtime(true)))
             ]);
 
             User::updateUser($id, $_POST);
@@ -181,7 +198,7 @@ class AdminController extends Controller
             $rules = $request->validate([
                 'refill' => 'required',
             ]);
-            Transaction::addTransacton($myUser->account_card['0']->card_number, $myUser->account_card['0']->card_number,$_POST['refill'],'BYN');
+            Transaction::addTransacton($myUser->account_card['0']->card_number, $myUser->account_card['0']->card_number, $_POST['refill'], 'BYN');
             $comment = 'оплата прошла успешно';
         }
         return view('admin.actions.refill', ['user' => $myUser, 'comment' => $comment]);

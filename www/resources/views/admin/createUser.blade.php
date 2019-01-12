@@ -11,6 +11,10 @@
         <div class="row">
             <div class="offset-md-2 col-md-4">
                 {!! Form::open(array('action' => 'AdminController@createUser', 'class' => 'needs-validation', 'novalidate' => 'novalidate')) !!}
+                {{ Form::radio('result', 'citizen' , true) }}
+                {{ Form::label('citizen', 'citizen of Belarus') }}
+                {{ Form::radio('result', 'notacitizen' , false) }}
+                {{ Form::label('citizen', 'not a citizen of Belarus') }}
 
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -81,11 +85,6 @@
                     </div>
                     {!! Form::select('currency', array('USD' => 'USD', 'EUR' => 'EUR', 'GBP' => 'GBP', 'BYN' => 'BYN'), 'BYN')!!}
                 </div>
-
-                {{--<div class="form-label-group">--}}
-                {{--{!! Form::text('login', null, array('placeholder'=>'Login', 'id' => 'inputLogin', 'class' => 'form-control', 'autofocus' => ''))!!}--}}
-                {{--{!! Form::label('inputLogin', 'Login') !!}--}}
-                {{--</div>--}}
 
                 {!! Form::submit('Create', ['class' => 'btn btn-primary btn-lg btn-block'])  !!}
                 {!! Form::close() !!}
