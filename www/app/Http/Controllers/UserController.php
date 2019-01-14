@@ -21,7 +21,7 @@ class UserController extends Controller
 
         if ($request->isMethod('post')) {
             $rules = [
-                'login'    => 'required|max:10|exists:users',
+                'login' => 'required|max:10|exists:users',
                 'password' => 'required'
             ];
             $this->validate($request, $rules);
@@ -64,8 +64,8 @@ class UserController extends Controller
         if ($request->isMethod('post')) {
             $rules = [
                 'phone' => 'required|min:9',
-                'mail'  => 'required|email',
-                'pass'  => 'alpha_num'
+                'mail' => 'required|email',
+                'pass' => 'alpha_num'
             ];
             $this->validate($request, $rules);
             Phone_user::updateDataPhone($_POST['phone'], $id);
@@ -93,7 +93,7 @@ class UserController extends Controller
             return redirect()->action('UserController@login');
         }
 
-        return view('users.userTransaction',compact('allTransaction', 'sum'));
+        return view('users.userTransaction', compact('allTransaction', 'sum'));
     }
 
 }
