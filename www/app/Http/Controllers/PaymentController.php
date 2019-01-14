@@ -33,9 +33,9 @@ class PaymentController extends Controller
         if ($request->isMethod('post')) {
             $rules = [
                 'card_number' => 'required|exists:account_cards|alpha_num',
-                'CVV'         => 'required|exists:account_cards',
-                'first_name'  => 'required|exists:account_cards',
-                'last_name'   => 'required|exists:account_cards'
+                'CVV' => 'required|exists:account_cards',
+                'first_name' => 'required|exists:account_cards',
+                'last_name' => 'required|exists:account_cards'
             ];
             $this->validate($request, $rules);
         }
@@ -67,7 +67,7 @@ class PaymentController extends Controller
                 $encryption = md5($_GET['card_number'] . $_GET['total'] . $_GET['comment'] . $user->salt['0']->salt);
                 dump($user->salt['0']->salt);
                 dd($encryption);
-                if ($encryption == $_GET['salt']&&$sum['0']->sum > $_GET['total']) {
+                if ($encryption == $_GET['salt'] && $sum['0']->sum > $_GET['total']) {
                     Transaction::reducingSender($user->account_card['0']->card_number, $_GET['total'], 'BYN');
                     Transaction::addTransacton($user->account_card['0']->card_number, $_GET['card_number'], $_GET['total'], 'BYN', 'payment');
                     $apiResponse = new ApiController();
@@ -76,7 +76,7 @@ class PaymentController extends Controller
                 } else {
                     return redirect('/customer?status=false');
                 }
-            } else{
+            } else {
                 $message = 'пароль для онлайн оплаты неверен';
             }
         }

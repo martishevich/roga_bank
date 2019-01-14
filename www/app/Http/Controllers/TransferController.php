@@ -30,7 +30,7 @@ class TransferController extends Controller
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
-        return view('transfer.transferToTheAccount',compact('sum'));
+        return view('transfer.transferToTheAccount', compact('sum'));
     }
 
     public function transferPass(Request $request)
@@ -43,12 +43,12 @@ class TransferController extends Controller
         if ($request->isMethod('post')) {
             $rules = [
                 'card_number' => 'required|min:16|max:16',
-                'first_name'  => 'required|alpha',
-                'last_name'   => 'required|alpha',
+                'first_name' => 'required|alpha',
+                'last_name' => 'required|alpha',
                 'sum' => 'required'
             ];
             $this->validate($request, $rules);
-            if($sum['0']->sum<$_POST['sum']){
+            if ($sum['0']->sum < $_POST['sum']) {
                 return redirect('/transfer')->with('message', 'на карте недостаточно средств');
             }
             ConfirmationCode::addData($_POST, $id);
@@ -73,7 +73,7 @@ class TransferController extends Controller
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
-        return view('transfer.transferPass',compact('sum'));
+        return view('transfer.transferPass', compact('sum'));
     }
 
     public function transferConfirm(Request $request)
@@ -85,8 +85,8 @@ class TransferController extends Controller
             $sum = Transaction::countingAmount($user->account_card['0']->card_number);
 
             if ($_POST['confirmation_code'] == $code->confirmation_code) {
-                $data =json_decode($code->data, true);
-                if($sum['0']->sum<$data['sum']){
+                $data = json_decode($code->data, true);
+                if ($sum['0']->sum < $data['sum']) {
                     return redirect('/transfer')->with('message', 'на карте недостаточно средств');
                 }
                 Transaction::reducingSender($user->account_card['0']->card_number, $data['sum'], 'BYN');

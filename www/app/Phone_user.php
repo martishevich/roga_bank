@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Components\AddUserHelper;
+
 class Phone_user extends Model
 {
     public function user()
@@ -19,7 +20,8 @@ class Phone_user extends Model
         $phone->user_id = $user_id;
         $phone->save();
     }
-    public static function updateDataPhone($phone_number,$user_id)
+
+    public static function updateDataPhone($phone_number, $user_id)
     {
         $phone = Phone_user::where('user_id', '=', $user_id)->first();
         $phone->phone_number = AddUserHelper::filterPhone($phone_number);

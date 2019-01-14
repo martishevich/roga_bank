@@ -28,7 +28,7 @@ class ConfirmationCode extends Model
 
     public static function addData($post, $user_id)
     {
-        $data =['card_number' => $post['card_number'],'first_name' => $post['first_name'], 'last_name' => $post['last_name'], 'sum'=>$post['sum']];
+        $data = ['card_number' => $post['card_number'], 'first_name' => $post['first_name'], 'last_name' => $post['last_name'], 'sum' => $post['sum']];
         $data = json_encode($data, JSON_UNESCAPED_UNICODE);
         $confCode = ConfirmationCode::where('user_id', '=', $user_id)->first();
         $confCode->data = $data;
