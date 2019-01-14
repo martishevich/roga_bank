@@ -13,6 +13,10 @@ use App\Phone_user;
 use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
+use PDF;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StatementEmail;
+
 
 class UserController extends Controller
 {
@@ -86,14 +90,28 @@ class UserController extends Controller
     {
 
         $user = User::find(\session()->get('id'));
-        $allTransaction = Transaction::transaction($user->account_card['0']->card_number);
+        $allTransaction = Transaction::transactionPagination($user->account_card['0']->card_number);
+        $statementTransaction = Transaction::transaction($user->account_card['0']->card_number);
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
         if (isset($_POST['submit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
+        if (isset($_POST['statement'])) {
+            $pdf = PDF::loadView('pdf.statement', compact('statementTransaction'))->setPaper('a4');
+            $objDemo = new \stdClass();
+            $objDemo->first_name = $user->firstName;
+            $objDemo->last_name = $user->lastName;
+            $objDemo->pdf = $pdf;
+            $objDemo->attachData($pdf->output(), "statement.pdf");
 
+            Mail::to('karshak4859@gmail.com')->send(new StatementEmail($objDemo));
+            return view('users.userTransaction',compact('allTransaction', 'sum'));
+            //$pdf->download('statement.pdf');
+        }
+        //$user->mail['0']->mail
         return view('users.userTransaction',compact('allTransaction', 'sum'));
     }
+
 
 }

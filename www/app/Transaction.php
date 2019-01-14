@@ -40,10 +40,15 @@ class Transaction extends Model
         return  sprintf("%01.2f" , $sum->sum);
     }
 
-    public static function transaction($card_number)
+    public static function transactionPagination($card_number)
     {
         return Transaction::where('beneficiary_account', '=', $card_number)
             ->paginate(15);
+    }
+    public static function transaction($card_number)
+    {
+        return Transaction::where('beneficiary_account', '=', $card_number)->get();
+
     }
 
 }
