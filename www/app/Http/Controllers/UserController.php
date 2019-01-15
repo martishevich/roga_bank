@@ -102,12 +102,8 @@ class UserController extends Controller
             $objDemo = new \stdClass();
             $objDemo->first_name = $user->firstName;
             $objDemo->last_name = $user->lastName;
-            $objDemo->pdf = $pdf;
-            $objDemo->attachData($pdf->output(), "statement.pdf");
-
-            Mail::to('karshak4859@gmail.com')->send(new StatementEmail($objDemo));
+            Mail::to('karshak4859@gmail.com')->send(new StatementEmail($objDemo, $pdf));
             return view('users.userTransaction',compact('allTransaction', 'sum'));
-            //$pdf->download('statement.pdf');
         }
         //$user->mail['0']->mail
         return view('users.userTransaction',compact('allTransaction', 'sum'));
@@ -115,3 +111,9 @@ class UserController extends Controller
 
 
 }
+
+/*Mail::send('mail.mail_statement', ['firstName' => $user->firstName, 'firstName' => $user->lastName], function ($message) use ($pdf) {
+    $message->from('karshak4859@gmail.com', 'Roga Bank');
+    $message->to('karshak4859@gmail.com')->subject('Invoice');
+    $message->attachData($pdf->output(), "statement.pdf");
+});*/
