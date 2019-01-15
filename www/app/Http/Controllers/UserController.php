@@ -96,4 +96,9 @@ class UserController extends Controller
         return view('users.userTransaction', compact('allTransaction', 'sum'));
     }
 
+    public function information()
+    {
+        return view('users.userInformation');
+    }
+
 }

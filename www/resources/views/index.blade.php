@@ -4,7 +4,7 @@
 
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
-@include('main.header')
+        @include('main.header')
 
         <main role="main" class="inner cover">
             <h1 class="cover-heading">"Roga & Kopyta"</h1>

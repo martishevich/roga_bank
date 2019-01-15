@@ -28,6 +28,7 @@ Route::match(['get', 'post'], '/transfer', 'TransferController@transferPage')->m
 Route::match(['get', 'post'], '/transferPass', 'TransferController@transferPass')->middleware(['authorith']);
 Route::match(['get', 'post'], '/transferConfirm', 'TransferController@transferConfirm')->middleware(['authorith']);
 Route::match(['get', 'post'], '/transaction', 'UserController@transaction')->middleware(['authorith']);
+Route::match(['get', 'post'], '/information', 'UserController@information')->middleware(['authorith']);
 Route::match(['get', 'post'], '/api', 'ApiController@apiForUser')->middleware(['authorith']);
 
 Route::match(['get', 'post'], '/loginAdmin', 'AdminController@loginAdmin');

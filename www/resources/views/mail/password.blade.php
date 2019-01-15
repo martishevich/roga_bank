@@ -6,8 +6,8 @@
 </head>
 <body>
 <h1>Спасибо за регистрацию, {{$objDemo->first_name}}!</h1>
-<p>
-    Ваш пароль для входа: {{ $objDemo->password }}
-</p>
+<p>Ссылка для входа в личный кабинет: http://rogabank.tk/login</p>
+<p>Ваш логин для входа: <b>{{ $objDemo->login  }}</b></p>
+<p>Ваш пароль для входа: <b>{{ $objDemo->password }}</b></p>
 </body>
 </html>

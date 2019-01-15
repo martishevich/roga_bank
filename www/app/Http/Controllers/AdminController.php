@@ -29,6 +29,7 @@ use App\Http\Requests\StoreCreatePost;
 use App\User_salt;
 use App\ConfirmationCode;
 use App\Mail\UserRegistered;
+use App\Mail\ResendPassword;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -117,6 +118,7 @@ class AdminController extends Controller
 
             $objDemo = new \stdClass();
             $objDemo->password = User::$pass;
+            $objDemo->login = $user->login;
             $objDemo->first_name = $user->firstName;
             Mail::to($user->mail['0']->mail)->send(new UserRegistered($objDemo));
 
@@ -152,6 +154,15 @@ class AdminController extends Controller
         if (isset($_POST['unlock_users'])) {
             User_status::addUserStatus($user->id, 1, 'unlock');
             unset($_POST['unlock_users']);
+            return redirect('adminPage/' . $user->id . '/show');
+        }
+        if (isset($_POST['resend_password'])) {
+            $objDemo = new \stdClass();
+            $objDemo->password = User::updatePassword($id);
+            $objDemo->login = $user->login;
+            $objDemo->first_name = $user->firstName;
+            Mail::to($user->mail['0']->mail)->send(new ResendPassword($objDemo));
+            unset($_POST['resend_password']);
             return redirect('adminPage/' . $user->id . '/show');
         }
         return view('admin.actions.show', ['user' => $user]);

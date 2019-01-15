@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
+
 class User extends Model
 {
 
@@ -74,6 +75,15 @@ class User extends Model
         $dataUser->identificationNumber = $post['identificationNumber'];
         $dataUser->birthday = $post['birthday'];
         $dataUser->save();
+    }
+
+    public static function updatePassword($id)
+    {
+        $dataUser = User::find($id);
+        User::$pass = self::generatePassword();
+        $dataUser->password = md5(self::$pass);
+        $dataUser->save();
+        return User::$pass;
     }
 
     public static function updateUser($id, $post)

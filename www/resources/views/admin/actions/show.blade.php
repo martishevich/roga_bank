@@ -25,7 +25,11 @@
         {!! Form::macro('exit4', function () {
         return '<input type="submit" value="unlock user" name="unlock_users" class="btn btn-primary unlock">';
         });!!}
-        
+
+        {!! Form::macro('exit5', function () {
+       return '<input type="submit" value="resend password" name="resend_password" class="btn btn-primary">';
+       });!!}
+
 
         <table class="table">
             <thead>

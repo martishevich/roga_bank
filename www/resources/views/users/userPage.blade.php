@@ -32,6 +32,7 @@
                 <a class="nav-link" href="/transfer">transfer</a>
                 <a class="nav-link" href="/transaction">transactions</a>
                 <a class="nav-link" href="/api">API</a>
+                <a class="nav-link" href="/information">User information</a>
             </nav>
         </div>
         <div class="col-md-4">
