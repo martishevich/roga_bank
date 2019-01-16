@@ -16,7 +16,8 @@ use Illuminate\Http\Request;
 use PDF;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StatementEmail;
-
+use App\Jobs\SendEmail;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -91,29 +92,21 @@ class UserController extends Controller
 
         $user = User::find(\session()->get('id'));
         $allTransaction = Transaction::transactionPagination($user->account_card['0']->card_number);
-        $statementTransaction = Transaction::transaction($user->account_card['0']->card_number);
+      
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
         if (isset($_POST['submit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
         if (isset($_POST['statement'])) {
-            $pdf = PDF::loadView('pdf.statement', compact('statementTransaction'))->setPaper('a4');
-            $objDemo = new \stdClass();
-            $objDemo->first_name = $user->firstName;
-            $objDemo->last_name = $user->lastName;
-            Mail::to('karshak4859@gmail.com')->send(new StatementEmail($objDemo, $pdf));
+
+            dispatch(new SendEmail($user));
             return view('users.userTransaction',compact('allTransaction', 'sum'));
         }
-        //$user->mail['0']->mail
+
         return view('users.userTransaction',compact('allTransaction', 'sum'));
     }
 
 
 }
 
-/*Mail::send('mail.mail_statement', ['firstName' => $user->firstName, 'firstName' => $user->lastName], function ($message) use ($pdf) {
-    $message->from('karshak4859@gmail.com', 'Roga Bank');
-    $message->to('karshak4859@gmail.com')->subject('Invoice');
-    $message->attachData($pdf->output(), "statement.pdf");
-});*/
