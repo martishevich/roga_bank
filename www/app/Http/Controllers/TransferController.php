@@ -30,7 +30,7 @@ class TransferController extends Controller
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
-        return view('transfer.transferToTheAccount',compact('sum'));
+        return view('transfer.transferToTheAccount', compact('sum'));
     }
 
     public function transferPass(Request $request)
@@ -43,8 +43,8 @@ class TransferController extends Controller
         if ($request->isMethod('post')) {
             $rules = [
                 'card_number' => 'required|min:16|max:16',
-                'first_name'  => 'required|alpha',
-                'last_name'   => 'required|alpha',
+                'first_name' => 'required|alpha',
+                'last_name' => 'required|alpha',
                 'sum' => 'required'
             ];
             $this->validate($request, $rules);
@@ -73,7 +73,7 @@ class TransferController extends Controller
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
-        return view('transfer.transferPass',compact('sum'));
+        return view('transfer.transferPass', compact('sum'));
     }
 
     public function transferConfirm(Request $request)

@@ -25,7 +25,7 @@
         {!! Form::macro('exit4', function () {
         return '<input type="submit" value="unlock user" name="unlock_users" class="btn btn-primary unlock">';
         });!!}
-
+        
 
         <table class="table">
             <thead>
@@ -83,7 +83,8 @@
         {!! Form::exit1()!!}
         {!! Form::exit2()!!}<br>
         {!! Form::exit3()!!}
-        {!! Form::exit4()!!}
+        {!! Form::exit4()!!}<br>
+        {!! Form::exit5()!!}
         {!! Form::close()!!}
 
         <a href="/adminPage">to admin page</a>

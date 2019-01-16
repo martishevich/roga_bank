@@ -8,6 +8,6 @@ class Status_card extends Model
 {
     public function card()
     {
-        return $this->hasMany('App\Card_status','status_id');
+        return $this->hasMany('App\Card_status', 'status_id');
     }
 }
