@@ -48,6 +48,10 @@
 <div class="jumbotron">
     <div class="container">
         <div class="col main-view-transaction">
+            <form method="post" action="/transaction" class="form_header">
+                @csrf
+                <input type="submit" value="get a statement" name="statement" class="btn btn-primary">
+            </form>
             <table class="table ">
                 <tr>
                     <th scope="col">Sender account</th>

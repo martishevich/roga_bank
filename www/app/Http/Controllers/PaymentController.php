@@ -84,4 +84,5 @@ class PaymentController extends Controller
         return view('payment.cardConfirmation', compact('message'));
     }
 
+
 }

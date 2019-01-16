@@ -13,6 +13,11 @@ use App\Phone_user;
 use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
+use PDF;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StatementEmail;
+use App\Jobs\SendEmail;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -86,14 +91,22 @@ class UserController extends Controller
     {
 
         $user = User::find(\session()->get('id'));
-        $allTransaction = Transaction::transaction($user->account_card['0']->card_number);
+        $allTransaction = Transaction::transactionPagination($user->account_card['0']->card_number);
+      
         $sum = Transaction::countingAmount($user->account_card['0']->card_number);
         if (isset($_POST['submit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }
+        if (isset($_POST['statement'])) {
 
-        return view('users.userTransaction', compact('allTransaction', 'sum'));
+            dispatch(new SendEmail($user));
+            return view('users.userTransaction',compact('allTransaction', 'sum'));
+        }
+
+        return view('users.userTransaction',compact('allTransaction', 'sum'));
     }
 
+
 }
+
