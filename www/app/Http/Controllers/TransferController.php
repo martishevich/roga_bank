@@ -48,7 +48,7 @@ class TransferController extends Controller
                 'sum' => 'required'
             ];
             $this->validate($request, $rules);
-            if($sum->sum<$_POST['sum']){
+            if($sum<$_POST['sum']){
                 return redirect('/transfer')->with('message', 'на карте недостаточно средств');
             }
             ConfirmationCode::addData($_POST, $id);
@@ -86,7 +86,7 @@ class TransferController extends Controller
 
             if ($_POST['confirmation_code'] == $code->confirmation_code) {
                 $data =json_decode($code->data, true);
-                if($sum->sum<$data['sum']){
+                if($sum<$data['sum']){
                     return redirect('/transfer')->with('message', 'на карте недостаточно средств');
                 }
                 Transaction::reducingSender($user->account_card['0']->card_number, $data['sum'], 'BYN');

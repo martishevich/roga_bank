@@ -52,7 +52,7 @@
                     @csrf
                     <label>Код подтверждения</label>
                     <input type="text" name="confirmation_code" class="form-control">
-                    <input type="submit" value="add update" name="add" class="btn btn-primary">
+                    <input type="submit" value="pay" name="add" class="btn btn-primary">
                 </div>
             </form>
         </div>
