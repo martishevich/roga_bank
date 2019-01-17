@@ -135,6 +135,10 @@ body {
     color: #dc3545;
 }
 
+.fa-money {
+    color: #28a745;
+}
+
 .deleteRecord {
     background-color: transparent;
     border: none;

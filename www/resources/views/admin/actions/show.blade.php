@@ -27,8 +27,8 @@
         });!!}
 
         {!! Form::macro('exit5', function () {
-       return '<input type="submit" value="resend password" name="resend_password" class="btn btn-primary">';
-       });!!}
+        return '<input type="submit" value="resend password" name="resend_password" class="btn btn-primary">';
+        });!!}
 
 
         <table class="table">
