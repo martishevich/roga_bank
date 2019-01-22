@@ -48,13 +48,14 @@ class TransferController extends Controller
                 'sum' => 'required'
             ];
             $this->validate($request, $rules);
-            if($sum<$_POST['sum']){
+            if($sum<$request['sum']){
                 return redirect('/transfer')->with('message', 'на карте недостаточно средств');
             }
-            ConfirmationCode::addData($_POST, $id);
+           // dd($request->all());
+            ConfirmationCode::addData($request->all(), $id);
             $date = ConfirmationCode::Where('user_id', '=', $id)->first();
             $today = date("Y-m-d H:i:s", strtotime("- 3 minute", microtime(true)));
-            $request->session()->put('card_number', $_POST['card_number']);
+            $request->session()->put('card_number', $request['card_number']);
             if ($date->updated_at < $today) {
                 ConfirmationCode::updateDataPhone(AddUserHelper::createCode(), $id);
 
@@ -69,7 +70,7 @@ class TransferController extends Controller
                 Mail::to($user->mail['0']->mail)->send(new CardMail($objDemo));
             }
         }
-        if (isset($_POST['exit'])) {
+        if (isset($request['exit'])) {
             $request->session()->forget('id');
             return redirect()->action('UserController@login');
         }

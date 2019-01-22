@@ -38,13 +38,12 @@ class UserControllerTest extends TestCase
      *@depends testConfirmationLogin
      */
 
-    public function testUserPageEditButton(){
 
-        $this->withoutMiddleware();
-        $this->withSession(['id' => 1])
-            ->visit('/UserPage')
-            ->click('profile reducting')
-            ->seePageIs('/userUpdateData');
+    public function testProfileReduct(){
+
+        $response = $this->withSession(['id' => 1])
+            ->call('GET', '/userUpdateData');
+        $this->assertEquals(200, $response->status());
     }
 
 
