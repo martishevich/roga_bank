@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            {!! Form::submit('Sign in', ['class' => 'btn btn-primary btn-lg btn-block'])  !!}
+            {!! Form::submit('Sign_in', ['class' => 'btn btn-primary btn-lg btn-block','name'=>'send'])  !!}
             {!! Form::close() !!}
         </div>
         @include('errors')

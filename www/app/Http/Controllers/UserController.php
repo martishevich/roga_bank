@@ -30,9 +30,9 @@ class UserController extends Controller
                 'password' => 'required'
             ];
             $this->validate($request, $rules);
-            $loginOk = User::where('login', '=', $_POST['login'])->first();
+            $loginOk = User::where('login', '=', $request['login'])->first();
 
-            if ($_POST['login'] == $loginOk->login && md5($_POST['password']) == $loginOk->password) {
+            if ($request['login'] == $loginOk->login && md5($request['password']) == $loginOk->password) {
                 $request->session()->put('id', $loginOk->id);
                 return redirect()->action('UserController@userPage');
             }
@@ -42,6 +42,7 @@ class UserController extends Controller
 
     public function userPage(Request $request)
     {
+
         $value = $request->session();
         $loginOk = User::find(session('id'));
         $id = $request->session()->get('id');
